@@ -1,0 +1,15 @@
+{
+  "name": "nexarc",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "php -S localhost:3000 -t public"
+  },
+  "keywords": [],
+  "author": "SH",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}
