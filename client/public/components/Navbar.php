@@ -1,54 +1,97 @@
 <?php
-
-$navLinks = [
-  "/" => "Home",
-  "/projects" => "Projects",
-  "/collab" => "Collab",
-  "/membership" => "Membership",
-  "/achievements" => "Achievements",
-  "/contact" => "Contact",
-];
-
-// Get current path
 $currentPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-
-// Remove the current path from nav links
-unset($navLinks[$currentPath]);
+$navItems = [
+  [
+    "label" => "Projects",
+    "href" => "/projects",
+    "icon" => "folder-tree-solid-full.svg",
+  ],
+  [
+    "label" => "Collab",
+    "href" => "/collab",
+    "icon" => "users-solid-full.svg",
+  ],
+  [
+    "label" => "Membership",
+    "href" => "/membership",
+    "icon" => "address-card-solid-full.svg",
+  ],
+  [
+    "label" => "Achievements",
+    "href" => "/achievements",
+    "icon" => "medal-solid-full.svg",
+  ],
+  [
+    "label" => "Learning",
+    "href" => "/learning",
+    "icon" => "medal-solid-full.svg",
+  ],
+  [
+    "label" => "Contact",
+    "href" => "/contact",
+    "icon" => "phone-solid-full.svg",
+  ],
+];
 ?>
 
-<header class="fixed top-0 z-30 w-full flex justify-between items-center px-4 py-3 bg-white/80 backdrop-blur-sm shadow-xl rounded-b-xl">
-  <a href="/" class="flex items-center gap-2">
-    <img src="assets/images/v3.png" alt="logo" class="w-10 h-10">
-    <p class="text-sm md:text-base leading-tight flex flex-col">
-      <span class="text-amber-400 font-semibold">NexArc</span>
-      <span class="text-blue-700 font-bold">RISE</span>
-    </p>
-  </a>
-  <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
-  </button>
-  <nav class="hidden md:flex items-center gap-6 text-gray-800 font-medium text-sm md:text-base">
-    <?php foreach ($navLinks as $href => $label): ?>
-      <a href="<?= $href ?>" class="hover:text-blue-700"><?= $label ?></a>
-    <?php endforeach; ?>
-  </nav>
-</header>
+  <header class="fixed top-2 w-[98vw] z-50 bg-blue-900/60 backdrop-blur-sm shadow-lg rounded-2xl py-1">
+    <div class="flex justify-between items-center px-2 text-gray-100">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-x-2">
+        <img src="assets/images/v3.png" alt="logo" class="size-12 brightness-50">
+        <span class="text-amber-400 font-semibold text-xl">NexArc RISE</span>
+      </a>
 
-<div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-40 -translate-x-full transition-transform duration-300 ease-in-out">
-  <div class="p-6 space-y-4 text-gray-800 font-medium">
-    <?php foreach ($navLinks as $href => $label): ?>
-      <a href="<?= $href ?>" class="hover:text-blue-700"><?= $label ?></a>
-    <?php endforeach; ?>
-  </div>
-</div>
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
-<script>
-  const menuBtn = document.getElementById('menu-btn');
-  const sidebar = document.getElementById('sidebar');
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex gap-6 font-medium">
+        <?php foreach ($navItems as $item): ?>
+          <a href="<?php echo $item[
+            "href"
+          ]; ?>" class="flex items-center gap-2 hover:text-amber-400 transition duration-200">
+            <span class="size-6">
+              <?php
+              $iconPath = "assets/icons/{$item["icon"]}";
+              if (file_exists($iconPath)) {
+                echo str_replace(
+                  "<svg",
+                  '<svg class="w-full h-full fill-current"',
+                  file_get_contents($iconPath),
+                );
+              } else {
+                echo "<!-- Missing icon: {$item["icon"]} -->";
+              }
+              ?>
+            </span>
+            <?php echo $item["label"]; ?>
+          </a>
+        <?php endforeach; ?>
+      </nav>
+    </div>
 
-  menuBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('-translate-x-full');
-  });
-</script>
+    <div id="mobile-menu" class="md:hidden hidden flex-col px-6 pb-4 font-medium text-base bg-blue-950 space-y-2">
+      <?php foreach ($navItems as $item): ?>
+        <a href="<?php echo $item[
+          "href"
+        ]; ?>" class="block py-2 rounded hover:bg-blue-800">
+          <?php echo $item["label"]; ?>
+        </a>
+      <?php endforeach; ?>
+    </div>
+  </header>
+
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>

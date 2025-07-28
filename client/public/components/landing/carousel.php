@@ -1,5 +1,3 @@
-  <!-- carousel -->
-
   <?php
   $folder = "assets/carousel/";
   $files = glob("{$folder}*.{jpg,jpeg,png,webp}", GLOB_BRACE);
@@ -51,5 +49,3 @@
     updateCarousel();
   }, 5000);
 </script>
-
-<!-- carousel end -->

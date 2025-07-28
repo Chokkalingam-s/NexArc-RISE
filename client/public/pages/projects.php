@@ -4,31 +4,42 @@
   include "assets/data.php";
   global $cards;
   foreach ($cards as $card): ?>
-  <div class="relative w-80 h-60 rounded-2xl overflow-hidden shadow-lg"
-       style="background-image: url('<?php echo htmlspecialchars(
-         $card["bgImage"],
-       ); ?>');">
-        <div class="absolute w-full h-full bg-gradient-to-b from-transparent via-black/60 to-black"></div>
-        <div class="absolute bottom-0 p-4 text-white z-10">
-          <h2 class="font-bold"><?php echo $card[
-            "title"
-          ]; ?></h2>
-          <p><span class="font-semibold">Description:</span> <?php echo $card[
-            "description"
-          ]; ?></p>
-          <p><span class="font-semibold">Collaborator:</span> <?php echo $card[
-            "collaborator"
-          ]; ?></p>
-          <?php if (!empty($card["participant"])): ?>
-            <p><span class="font-semibold">Participant:</span> <?php echo $card[
-              "participant"
-            ]; ?></p>
-          <?php endif; ?>
-          <p><span class="font-semibold">Year:</span> <?php echo $card[
-            "year"
-          ]; ?></p>
+  <section class="p-8">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-3xl font-bold">Ongoing Projects</h2>
+      <a href="/projects" class="text-blue-700 font-medium hover:underline">View More</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <?php foreach ($cards as $card): ?>
+        <div class="relative w-full h-60 rounded-2xl overflow-hidden shadow-lg"
+             style="background-image: url('<?= htmlspecialchars(
+               $card["bgImage"],
+             ) ?>'); background-size: cover; background-position: center;">
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black"></div>
+          <div class="absolute bottom-0 p-4 text-white z-10">
+            <h2 class="font-bold text-lg"><?= $card[
+              "title"
+            ] ?></h2>
+            <p><span class="font-semibold">Description:</span> <?= $card[
+              "description"
+            ] ?></p>
+            <p><span class="font-semibold">Collaborator:</span> <?= $card[
+              "collaborator"
+            ] ?></p>
+            <?php if (!empty($card["participant"])): ?>
+              <p><span class="font-semibold">Participant:</span> <?= $card[
+                "participant"
+              ] ?></p>
+            <?php endif; ?>
+            <p><span class="font-semibold">Year:</span> <?= $card[
+              "year"
+            ] ?></p>
+          </div>
         </div>
-      </div>
+      <?php endforeach; ?>
+    </div>
+  </section>
     <?php endforeach;
   ?>
 </main>

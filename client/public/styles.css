@@ -1,21 +1,57 @@
 @import 'tailwindcss';
 
 body {
-  @apply mx-auto min-h-screen w-[98vw] bg-gradient-to-br from-amber-50 to-blue-200 bg-fixed bg-no-repeat font-sans text-blue-900;
-  font-family: : 'Inter', sans-serif;
+  @apply mx-auto min-h-screen w-[98vw] bg-gradient-to-br from-amber-50 to-blue-200 bg-fixed bg-no-repeat text-blue-900;
+  font-family: 'Inter', sans-serif;
+}
+main {
+  @apply relative top-18 min-h-screen;
+}
+
+img,
+.img {
+  @apply bg-cover bg-center bg-no-repeat;
 }
 
 img:has('.aspect-square') {
   width: 1.5rem;
   aspect-ratio: 1;
+  @apply aspect-auto w-auto fill-gray-100;
 }
-a img {
-  width: auto;
-  aspect-ratio: auto;
+a {
+  &:hover,
+  &:active,
+  &:focus {
+    @apply text-amber-400 underline;
+  }
+  img {
+    @apply aspect-auto w-auto fill-gray-100;
+  }
+}
+
+.contact {
+  @apply mx-auto grid max-w-6xl gap-10 text-sm md:grid-cols-3;
+  h2 {
+    @apply mb-4 text-base font-bold;
+  }
+  div > div {
+    @apply flex items-center gap-3;
+    > img {
+      @apply size-6;
+    }
+  }
 }
 
 p {
-  width: 65ch;
+  max-width: 65ch;
+}
+
+.line {
+  @apply underline underline-offset-4;
+}
+
+.relax {
+  @apply text-lg leading-relaxed;
 }
 
 @keyframes fade-in {

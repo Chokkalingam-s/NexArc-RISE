@@ -1,23 +1,26 @@
-<?php
-$cards = [
+<?php $cards = [
   [
-    "title" => "Project Phoenix",
-    "collaborator" => "Jane Doe",
-    "description" => "Renewable energy research.",
-    "participant" => "John Smith",
-    "year" => "2020 - Present",
-    "bgImage" =>
-      "https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "bgImage" => "https://placehold.co/300x200",
+    "title" => "Project One",
+    "description" => "Building cross-border tools",
+    "collaborator" => "Kyoto Univ",
+    "participant" => "Airi Tanaka",
+    "year" => "2025",
   ],
   [
-    "title" => "Neural Nest",
-    "collaborator" => "Alan Turing",
-    "description" => "AI framework for predictive analytics.",
+    "bgImage" => "https://placehold.co/300x200",
+    "title" => "Project Two",
+    "description" => "AI in education",
+    "collaborator" => "MIT Media Lab",
+    "participant" => "Ken Suzuki",
+    "year" => "2024",
+  ],
+  [
+    "bgImage" => "https://placehold.co/300x200",
+    "title" => "Project Three",
+    "description" => "Open research archives",
+    "collaborator" => "Tokyo Tech",
     "participant" => "",
-    "year" => "2019 - Present",
-    "bgImage" =>
-      "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "year" => "2023",
   ],
-];
-
-?>
+]; ?>

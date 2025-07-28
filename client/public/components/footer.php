@@ -1,8 +1,9 @@
-<footer class="bg-blue-900/60 text-gray-100 py-6 px-4 rounded-xl">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-sm font-medium">
-    <p>&copy; <?= date(
+<footer class="mt-20 bg-blue-900/80 text-gray-100 py-12 px-4 rounded-t-3xl">
+  <?php include_once "links.php"; ?>
+  <div class="max-w-6xl mx-auto border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-sm">
+    <p class="font-bold">&copy; <?= date(
       "Y",
     ) ?> NexArc RISE. All rights reserved.</p>
-    <p class="opacity-70">Empowering ideas beyond borders.</p>
+    <p>Empowering ideas beyond borders.</p>
   </div>
 </footer>

@@ -2,7 +2,7 @@
   "name": "nexarc",
   "version": "1.0.0",
   "scripts": {
-    "dev": "php -S localhost:3000 -t public"
+    "dev": "concurrently \"php -S localhost:3000 -t public\" \"pnpm dlx @tailwindcss/cli -i ./public/styles.css -o ./public/style.css --watch\""
   },
   "keywords": [],
   "author": "SH",
@@ -11,5 +11,8 @@
     "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/postcss": "^4.1.11",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }
