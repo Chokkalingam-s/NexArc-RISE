@@ -1,5 +1,5 @@
 <main class="relative top-12">
-  <h2 class="text-2xl font-semibold">Projects</h2>
+  <h2 class="text-2xl font-medium">Projects</h2>
   <?php
   include "assets/data.php";
   global $cards;
@@ -21,18 +21,18 @@
             <h2 class="font-bold text-lg"><?= $card[
               "title"
             ] ?></h2>
-            <p><span class="font-semibold">Description:</span> <?= $card[
+            <p><span class="font-medium">Description:</span> <?= $card[
               "description"
             ] ?></p>
-            <p><span class="font-semibold">Collaborator:</span> <?= $card[
+            <p><span class="font-medium">Collaborator:</span> <?= $card[
               "collaborator"
             ] ?></p>
             <?php if (!empty($card["participant"])): ?>
-              <p><span class="font-semibold">Participant:</span> <?= $card[
+              <p><span class="font-medium">Participant:</span> <?= $card[
                 "participant"
               ] ?></p>
             <?php endif; ?>
-            <p><span class="font-semibold">Year:</span> <?= $card[
+            <p><span class="font-medium">Year:</span> <?= $card[
               "year"
             ] ?></p>
           </div>

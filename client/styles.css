@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 body {
-  @apply mx-auto min-h-screen w-[98vw] bg-gradient-to-br from-amber-50 to-blue-200 bg-fixed bg-no-repeat text-blue-900;
+  @apply mx-auto min-h-screen bg-gradient-to-br from-gray-100 to-blue-200 bg-fixed bg-no-repeat text-blue-800;
   font-family: 'Inter', sans-serif;
 }
 main {
@@ -22,23 +22,10 @@ a {
   &:hover,
   &:active,
   &:focus {
-    @apply text-amber-400 underline;
+    @apply text-amber-500;
   }
   img {
     @apply aspect-auto w-auto fill-gray-100;
-  }
-}
-
-.contact {
-  @apply mx-auto grid max-w-6xl gap-10 text-sm md:grid-cols-3;
-  h2 {
-    @apply mb-4 text-base font-bold;
-  }
-  div > div {
-    @apply flex items-center gap-3;
-    > img {
-      @apply size-6;
-    }
   }
 }
 
@@ -47,7 +34,7 @@ p {
 }
 
 .line {
-  @apply underline underline-offset-4;
+  @apply mb-6 font-semibold underline underline-offset-4;
 }
 
 .relax {
@@ -70,19 +57,4 @@ p {
 
 main {
   min-height: 100vh;
-}
-
-.contact_us span {
-  width: fit-content;
-  display: flex;
-  justify-content: center;
-  column-gap: 1rem;
-  span {
-    flex-direction: column;
-    p {
-      &:first-child {
-        font-weight: 600;
-      }
-    }
-  }
 }

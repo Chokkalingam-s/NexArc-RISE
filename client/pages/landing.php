@@ -1,5 +1,4 @@
 <main class="relative top-16">
-
   <?php
   include_once "components/navbar.php";
   include_once "components/landing/about.php";
@@ -10,7 +9,7 @@
 <!-- ongoing projects -->
 <section class="p-8">
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-3xl font-bold">Ongoing Projects</h2>
+    <h2 class="text-2xl font-medium">Ongoing Projects</h2>
     <a href="/projects">View More</a>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -23,7 +22,7 @@
 <!-- Completed Projects -->
 <section class="p-8 mb-10">
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-3xl font-bold">Completed Projects</h2>
+    <h2 class="text-2xl font-medium">Completed Projects</h2>
     <a href="/projects">View More</a>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

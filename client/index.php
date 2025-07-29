@@ -11,7 +11,11 @@
 	<title>NexArc RISE</title>
 </head>
 <body>
-
+  <!-- <script>
+  setInterval(()=>{
+    location.reload()
+  },30000)
+  </script> -->
   <?php
   $request = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
@@ -27,6 +31,7 @@
     "/learning" => "pages/learning.php",
     "/achievements" => "pages/achievements.php",
     "/membership" => "pages/membership.php",
+    "/collab" => "pages/collab.php",
   ];
 
   if (array_key_exists($request, $routes)) {

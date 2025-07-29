@@ -18,11 +18,11 @@
       </div>
     <?php endforeach; ?>
 
-    <div id="dots" class="flex justify-center gap-2 absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full backdrop-blur-sm border-amber-400/20 p-1 border-2 z-20">
+    <div id="dots" class="flex justify-center gap-2 absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full backdrop-blur-sm border-blue-400/20 p-1 border-2 z-20">
       <?php foreach ($files as $i => $_): ?>
         <span class="dot w-2 h-2 rounded-full <?php echo $i === 0
-          ? "border-2 border-amber-400"
-          : "bg-amber-400"; ?>"></span>
+          ? "border-2 border-blue-400"
+          : "bg-blue-400"; ?>"></span>
       <?php endforeach; ?>
     </div>
   </div>
@@ -39,8 +39,8 @@
     });
     dots.forEach((d, i) => {
       d.classList.toggle('border-2', i === current);
-      d.classList.toggle('border-amber-400', i === current);
-      d.classList.toggle('bg-amber-400', i !== current);
+      d.classList.toggle('border-blue-400', i === current);
+      d.classList.toggle('bg-blue-400', i !== current);
     });
   }
 

@@ -2,14 +2,13 @@
   "name": "nexarc",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \"php -S localhost:3000 -t public\" \"pnpm dlx @tailwindcss/cli -i ./public/styles.css -o ./public/style.css --watch\""
+    "dev": "concurrently \"php -S localhost:3000 -t client\" \"pnpm dlx @tailwindcss/cli -i ./client/styles.css -o ./client/style.css --watch\""
   },
   "keywords": [],
   "author": "SH",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.11",
-    "@tailwindcss/postcss": "^4.1.11",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
