@@ -22,11 +22,11 @@ function inline_svg($path)
   <div class="space-y-2">
     <h2 class="font-semibold underline underline-offset-4">Contact Us</h2>
     <div class="flex items-center gap-2">
-      <?= inline_svg("assets/images/phone-solid.svg") ?>
+      <?= inline_svg("assets/icons/phone-solid.svg") ?>
       <span>+81-80-4842-8090</span>
     </div>
     <div class="flex items-center gap-2">
-      <?= inline_svg("assets/images/envelope-solid.svg") ?>
+      <?= inline_svg("assets/icons/envelope-solid.svg") ?>
       <a href="mailto:nexarcrise@gmail.com" class="underline">nexarcrise@gmail.com</a>
     </div>
   </div>
@@ -36,14 +36,18 @@ function inline_svg($path)
     <h2 class="font-semibold underline underline-offset-4">Follow Us</h2>
     <div class="space-y-1">
       <a href="https://www.instagram.com/nexarc_rise/" target="_blank" class="flex items-center gap-2 hover:underline">
-        <?= inline_svg("assets/images/instagram-brands.svg") ?>
+        <?= inline_svg("assets/icons/instagram-brands.svg") ?>
         Instagram
       </a>
       <a href="https://www.linkedin.com/company/nexarc-rise/" target="_blank" class="flex items-center gap-2 hover:underline">
         <?= inline_svg(
-          "assets/images/linkedin-brands-solid.svg",
+          "assets/icons/linkedin-brands-solid.svg",
         ) ?>
         LinkedIn
+      </a>
+      <a href="https://whatsapp.com/channel/0029Vb6nSRJCcW4oxI2qbA0Y" target="_blank" class="flex items-center gap-2 hover:underline">
+        <?= inline_svg("assets/icons/whatsapp.svg") ?>
+        Whatsapp
       </a>
     </div>
   </div>

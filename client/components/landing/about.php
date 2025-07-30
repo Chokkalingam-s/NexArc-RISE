@@ -12,13 +12,13 @@
         <div>We build it.</div>
       </h2>
 
-      <p class="relax">
+      <p class="relax text-blue-700">
         <strong>NexArc RISE</strong> isn’t just a
         Non-Profit — it’s a
         <em class="font-medium">global launchpad</em> for bold minds and limitless ideas.
       </p>
 
-      <p class="relax">
+      <p class="relax text-blue-700">
         We unite
        students, researchers, and mentors
         across borders and disciplines to turn curiosity into impact.
@@ -26,14 +26,14 @@
         From Japan to the world — we ignite potential without limits.
       </p>
 
-      <em class="text-xl font-semibold">
+      <em class="text-xl font-semibold text-blue-700">
         “What if?” becomes “Let’s make it happen.”
       </em>
     </div>
 
     <!-- Image -->
     <div class="aspect-square max-w-xs md:max-w-sm overflow-hidden">
-      <img src="assets/images/v3.png" alt="About Us" class="size-full object-cover" />
+      <img src="assets/icons/v3.png" alt="About Us" class="size-full object-cover" />
     </div>
   </div>
 </section>

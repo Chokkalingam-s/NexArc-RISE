@@ -36,7 +36,7 @@ $navItems = [
 <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-md">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
     <a href="/" class="flex items-center gap-2">
-      <img src="assets/images/v3.png" alt="logo" class="size-10">
+      <img src="assets/icons/v3.png" alt="logo" class="size-10">
       <span class="font-semibold text-xl">NexArc RISE</span>
     </a>
 
