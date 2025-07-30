@@ -6,13 +6,14 @@
       } ?>
     </div>
 
-    <div class="flex shrink-0" id="clone">
+    <div class="flex shrink-0 gap-x-10 ml-10" id="clone">
       <?php for ($i = 1; $i <= 7; $i++) {
-        echo "<div class='min-w-[150px] h-24 bg-blue-300 rounded-xl flex items-center justify-center text-xl font-bold px-2 ml-10'>$i</div>";
+        echo "<div class='min-w-[150px] h-24 bg-blue-300 rounded-xl flex items-center justify-center text-xl font-bold px-2'>$i</div>";
       } ?>
     </div>
   </div>
 </div>
+
 <style>
 @keyframes scroll {
   0% { transform: translateX(0); }
@@ -20,7 +21,7 @@
 }
 
 .animate-scroll {
-  animation: scroll 20s linear infinite;
+  animation: scroll 40s linear infinite; /* Slowed down */
   width: max-content;
 }
 </style>

@@ -18,6 +18,10 @@
         <em class="font-medium">global launchpad</em> for bold minds and limitless ideas.
       </p>
 
+      <em class="text-xl font-semibold text-blue-700">
+        “What if?” becomes “Let’s make it happen.”
+      </em>
+
       <p class="relax text-blue-700">
         We unite
        students, researchers, and mentors
@@ -26,9 +30,6 @@
         From Japan to the world — we ignite potential without limits.
       </p>
 
-      <em class="text-xl font-semibold text-blue-700">
-        “What if?” becomes “Let’s make it happen.”
-      </em>
     </div>
 
     <!-- Image -->
