@@ -7,14 +7,16 @@
     <p class="text-red-500">No carousel images found!</p>
   <?php endif; ?>
 
-  <div id="carousel" class="relative w-full h-[70vh] rounded-xl shadow-xl overflow-hidden">
-    <div class="absolute inset-0 bg-black/20 rounded-xl z-10"></div>
+  <div id="carousel" class="relative w-full aspect-[16/7] rounded-xl shadow-xl overflow-hidden">
+    <div class="absolute inset-0 bg-black/20 rounded-xl z-10 pointer-events-none"></div>
+
     <?php foreach ($files as $i => $img): ?>
-      <div class="carousel-slide absolute inset-0 w-full h-full bg-center bg-cover transition-opacity duration-1000 <?php echo $i ===
-      0
-        ? "opacity-100 pointer-events-auto"
-        : "opacity-0 pointer-events-none"; ?>"
-           style="background-image: url('<?php echo $img; ?>');">
+      <div
+        class="carousel-slide absolute inset-0 w-full h-full bg-center bg-cover transition-opacity duration-1000 <?php echo $i ===
+        0
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"; ?>"
+        style="background-image: url('<?php echo $img; ?>');">
       </div>
     <?php endforeach; ?>
 
