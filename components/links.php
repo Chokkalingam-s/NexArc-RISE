@@ -11,7 +11,7 @@ function inline_svg($path)
   return "<!-- Missing icon: $path -->";
 } ?>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-blue-800 px-10">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-blue-800 max-w-6xl mx-auto justify-items-center">
   <!-- Site Info Column -->
   <div class="space-y-2">
     <h1 class="text-2xl font-semibold">NexArc RISE</h1>
@@ -19,8 +19,8 @@ function inline_svg($path)
   </div>
 
   <!-- Contact Us -->
-  <div class="space-y-2">
-    <h2 class="font-semibold underline underline-offset-4">Contact Us</h2>
+  <div>
+    <h2 class="line head">Contact Us</h2>
     <div class="flex items-center gap-2">
       <?= inline_svg("assets/icons/phone-solid.svg") ?>
       <span>+81-80-4842-8090</span>
@@ -32,8 +32,8 @@ function inline_svg($path)
   </div>
 
   <!-- Follow Us -->
-  <div class="space-y-2">
-    <h2 class="font-semibold underline underline-offset-4">Follow Us</h2>
+  <div>
+    <h2 class="line head">Follow Us</h2>
     <div class="space-y-1">
       <a href="https://www.instagram.com/nexarc_rise/" target="_blank" class="flex items-center gap-2 hover:underline">
         <?= inline_svg("assets/icons/instagram-brands.svg") ?>
@@ -53,8 +53,8 @@ function inline_svg($path)
   </div>
 
   <!-- Quick Links -->
-  <div class="space-y-2">
-    <h2 class="font-semibold underline underline-offset-4">Quick Links</h2>
+  <div>
+    <h2 class="line head">Quick Links</h2>
     <ul class="space-y-1">
       <li><a href="/privacy-policy" class="hover:underline">Privacy Policy</a></li>
       <li><a href="/terms-of-service" class="hover:underline">Terms of Service</a></li>

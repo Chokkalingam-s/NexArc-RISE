@@ -1,0 +1,31 @@
+achivemnets 70% 30% - all cards with each part being a scrollable seperatly
+update membership form
+landing page -> change the text color under the about us
+collab small vertical cards
+projects - no image for the cards also add toggle button for ongoing and completed
+try to make the icon in nav to be little more prominent, slow the carousel of 1 to 7 then make the carousel main one to be responsive while maintaing the aspect ratio
+add whatsapp channel under follow us in footer
+
+
+mobile navbar logo small about us height reduce big logo remove -d
+collab
+  cards
+    - scholership ref
+    - schools ref
+
+    - static content
+      left students wanting right side master doc
+      - students so far benifited - carousel
+
+    -contact box
+      japanese lang
+      scholar hsip and schools
+      higher studies in japense
+
+membership form add note as well
+
+
+projects - acheivement right side ->  project rifght side
+
+
+confernces & journals -> completed projects

@@ -2,7 +2,7 @@
   "name": "nexarc",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \"php -S localhost:3000 -t client\" \"pnpm dlx @tailwindcss/cli -i ./client/styles.css -o ./client/style.css --watch\""
+    "dev": "concurrently \"php -S localhost:3000 -t .\" \"pnpm dlx @tailwindcss/cli -i styles.css -o style.css --watch\""
   },
   "keywords": [],
   "author": "SH",
