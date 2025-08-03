@@ -1,9 +1,9 @@
 <main class="relative top-16">
   <?php
-  include_once __DIR__ . "/../navbar.php";
-  include_once __DIR__ . "/../about.php";
-  include_once __DIR__ . "/../carousel.php";
-  include_once __DIR__ . "/../tiny.php";
+  include_once __DIR__ . "/../components/navbar.php";
+  include_once __DIR__ . "/../components/about.php";
+  include_once __DIR__ . "/../components/carousel.php";
+  include_once __DIR__ . "/../components/tiny.php";
   ?>
 
 <!-- ongoing projects -->

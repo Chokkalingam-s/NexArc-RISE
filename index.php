@@ -11,13 +11,35 @@
   <title>NexArc RISE</title>
 </head>
 <body>
+  <div class="fixed top-0 w-full h-screen overflow-hidden">
+    <div class="absolute top-0 left-0 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-[blob_10s_ease-in-out_infinite] will-change-transform translate-z-0"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-[blob_10s_ease-in-out_infinite_1s] will-change-transform translate-z-0"></div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-[blob_10s_ease-in-out_infinite_2s] will-change-transform translate-z-0"></div>
+  </div>
+
+  <style>
+  @keyframes blob {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(60px, -40px) scale(1.05);
+    }
+    66% {
+      transform: translate(-40px, 60px) scale(0.95);
+    }
+  }
+  </style>
+
   <?php
   define("ROOT", __DIR__);
 
   $request = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
   if ($request !== "/") {
-    include_once ROOT . "/Navbar.php";
+    include_once ROOT . "/components/navbar.php";
   }
 
   $routes = [
@@ -37,7 +59,7 @@
     require ROOT . "/pages/404.php";
   }
 
-  include_once ROOT . "/footer.php";
+  include_once ROOT . "/components/footer.php";
   ?>
 
   <!-- <script>

@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 body {
-  @apply mx-auto min-h-screen bg-gradient-to-br from-gray-100 to-blue-200 bg-fixed bg-no-repeat text-gray-900;
+  @apply mx-auto min-h-screen bg-gradient-to-br from-gray-200 to-blue-300 bg-fixed bg-no-repeat text-gray-900;
   font-family: 'Inter', sans-serif;
 }
 main {
-  @apply relative top-18 min-h-screen;
+  @apply relative top-6 min-h-screen;
 }
 
 .grad {
@@ -15,6 +15,13 @@ main {
 h2:not(.head) {
   @apply text-2xl font-medium text-blue-800;
 }
+
+.card {
+  .head {
+    @apply text-lg font-semibold text-white;
+  }
+}
+
 img,
 .img {
   @apply bg-cover bg-center bg-no-repeat;
@@ -81,12 +88,16 @@ input[type='file'] {
   @apply block w-full text-sm text-gray-500 file:mr-4 file:rounded file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-800 hover:file:bg-blue-100;
 }
 
+input::placeholder {
+  @apply text-gray-600;
+}
+
 .relax {
   @apply text-lg leading-relaxed;
 }
 
 section {
-  @apply relative my-14 px-2 md:px-20;
+  @apply relative my-14 px-2 md:px-10;
 }
 
 @keyframes fade-in {
@@ -123,6 +134,6 @@ main {
   }
 }
 
-#ongoingSection p {
+.card p {
   @apply text-sm;
 }

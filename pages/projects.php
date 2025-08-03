@@ -1,43 +1,77 @@
-<main class="text-blue-800">
-  <div class="inline-block shadow-lg rounded-full fixed top-16 right-4 z-40 backdrop-blur-sm bg-white/80">
-    <div class="rounded-full p-1 shadow-inner">
-      <div class="grid grid-cols-2 gap-1">
-        <button class="text-white rounded-full py-2 px-4 text-sm font-medium shadow-sm bg-amber-500 transition-all duration-100" id="ongoingBtn2">Ongoing</button>
-        <button class="text-gray-500 rounded-full py-2 px-4 text-sm font-medium hover:text-gray-700 transition-all duration-200" id="completedBtn2">Completed</button>
+<main>
+  <!-- Toggle Projects -->
+  <div class="fixed top-16 right-2 z-20">
+    <div class="backdrop-blur-md rounded-full p-1 shadow-lg border border-white/20">
+      <div class="flex bg-slate-100/60 rounded-full p-1">
+        <button class="bg-amber-500 text-white rounded-full py-2.5 px-5 text-sm font-semibold shadow-md transition-all duration-300 hover:bg-amber-600" id="ongoingBtn">
+          Ongoing
+        </button>
+        <button class="text-slate-600 rounded-full py-2.5 px-5 text-sm font-medium hover:text-slate-800 transition-all duration-300" id="completedBtn">
+          Completed
+        </button>
       </div>
     </div>
   </div>
 
-  <section id="ongoingSection" class="pb-10">
+  <!-- Ongoing Projects Section -->
+  <section id="ongoingSection" class="container mx-auto px-6">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-800 mb-2">Ongoing Projects</h1>
+      <p class="text-slate-600">Current research and collaboration initiatives</p>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <?php
       global $cards;
       include_once "assets/data.php";
       foreach ($cards as $index => $card): ?>
-      <div class="group relative rounded-2xl overflow-hidden shadow-xl transition-transform hover:-translate-y-1 text-white cursor-pointer" onclick="openModal(<?= $index ?>, 'ongoing')">
-        <div class="h-40 w-full overflow-hidden">
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="openModal(<?= $index ?>, 'ongoing')">
+
+        <!-- Image Header -->
+        <div class="relative h-48 overflow-hidden">
           <img src="<?= $card["bgImage"] ?>" alt="<?= $card[
   "title"
-] ?? "Card image" ?>" class="w-full h-full object-cover" />
+] ?? "Project image" ?>"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-lg">
+            <?= $card["year"] ?> - <?= $card["end_year"] ?>
+          </span>
         </div>
-        <span class="absolute top-2 right-2 px-2 py-1 text-xs font-medium rounded-full bg-amber-500 shadow z-20">
-          <?= $card["year"] ?> - <?= $card["end_year"] ?>
-        </span>
-        <div class="p-2 space-y-1 z-10 relative bg-amber-500">
-          <h2 class="head font-semibold leading-snug text-lg"><?= $card[
-            "title"
-          ] ?></h2>
-          <p><span class="font-medium">Description:</span> <?= $card[
-            "description"
-          ] ?></p>
-          <p><span class="font-medium">Collaborator:</span> <?= $card[
-            "collaborator"
-          ] ?></p>
-          <?php if (!empty($card["participant"])): ?>
-            <p><span class="font-medium">Participant:</span> <?= $card[
-              "participant"
-            ] ?></p>
-          <?php endif; ?>
+
+        <!-- Content -->
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-amber-600 transition-colors">
+            <?= $card["title"] ?>
+          </h3>
+
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-700 line-clamp-2">
+              <span class="font-semibold text-slate-800">Description:</span>
+              <?= $card["description"] ?>
+            </p>
+
+            <p class="text-slate-700">
+              <span class="font-semibold text-slate-800">Collaborator:</span>
+              <span class="text-amber-600"><?= $card[
+                "collaborator"
+              ] ?></span>
+            </p>
+
+            <?php if (!empty($card["participant"])): ?>
+              <p class="text-slate-700">
+                <span class="font-semibold text-slate-800">Participant:</span>
+                <?= $card["participant"] ?>
+              </p>
+            <?php endif; ?>
+          </div>
+
+          <!-- View More Button -->
+          <div class="mt-4 pt-4 border-t border-slate-100">
+            <span class="text-amber-600 font-medium text-sm group-hover:text-amber-700 transition-colors">
+              View Details →
+            </span>
+          </div>
         </div>
       </div>
       <?php endforeach;
@@ -45,32 +79,69 @@
     </div>
   </section>
 
-  <section id="completedSection" class="hidden p-4 md:p-8">
+  <!-- Completed Projects Section -->
+  <section id="completedSection" class="container mx-auto px-6 hidden">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-800 mb-2">Completed Projects</h1>
+      <p class="text-slate-600">Published research and finished collaborations</p>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <?php
       global $completedCards;
       foreach ($completedCards as $index => $card): ?>
-      <div class="group relative rounded-2xl overflow-hidden shadow-xl transition-transform hover:-translate-y-1 text-white cursor-pointer" onclick="openModal(<?= $index ?>, 'completed')">
-        <div class="h-40 w-full overflow-hidden">
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="openModal(<?= $index ?>, 'completed')">
+
+        <!-- Image Header -->
+        <div class="relative h-48 overflow-hidden">
           <img src="<?= $card["bgImage"] ?>" alt="<?= $card[
   "title"
-] ?? "Card image" ?>" class="w-full h-full object-cover" />
+] ?? "Project image" ?>"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          <span class="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-lg">
+            <?= $card["year"] ?> - <?= $card["end_year"] ?>
+          </span>
+          <div class="absolute bottom-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
         </div>
-        <span class="absolute top-2 right-2 px-2 py-1 text-xs font-medium rounded-full grad shadow z-20">
-          <?= $card["year"] ?> - <?= $card["end_year"] ?>
-        </span>
-        <div class="p-2 space-y-1 z-10 relative grad">
-          <h2 class="head font-semibold leading-snug text-lg"><?= $card[
-            "title"
-          ] ?></h2>
-          <p><span class="font-medium">Collaborator:</span> <?= $card[
-            "collaborator"
-          ] ?></p>
-          <?php if (!empty($card["participant"])): ?>
-            <p><span class="font-medium">Participant:</span> <?= $card[
-              "participant"
-            ] ?></p>
-          <?php endif; ?>
+
+        <!-- Content -->
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">
+            <?= $card["title"] ?>
+          </h3>
+
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-700">
+              <span class="font-semibold text-slate-800">Collaborator:</span>
+              <span class="text-blue-600"><?= $card[
+                "collaborator"
+              ] ?></span>
+            </p>
+
+            <?php if (!empty($card["participant"])): ?>
+              <p class="text-slate-700">
+                <span class="font-semibold text-slate-800">Participant:</span>
+                <?= $card["participant"] ?>
+              </p>
+            <?php endif; ?>
+          </div>
+
+          <!-- Publication Status -->
+          <div class="mt-4 pt-4 border-t border-slate-100">
+            <div class="flex items-center justify-between">
+              <span class="text-green-600 font-medium text-sm">
+                ✓ Published
+              </span>
+              <span class="text-blue-600 font-medium text-sm group-hover:text-blue-700 transition-colors">
+                View Details →
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <?php endforeach;
@@ -78,78 +149,146 @@
     </div>
   </section>
 
-  <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
-    <div class="bg-white rounded-xl shadow-lg max-w-md w-full p-6 relative">
-      <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-black">&times;</button>
-        <img src="<?= $card[
-          "bgImage"
-        ] ?>" class="w-full h-48 object-cover rounded-t-lg" />
-      <div id="modalContent">
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+
+      <!-- Modal Header -->
+      <div class="relative">
+        <div id="modalImage" class="h-64 bg-gradient-to-br from-slate-200 to-slate-300"></div>
+        <button onclick="closeModal()" class="absolute top-4 right-4 bg-white/90 hover:bg-white text-slate-600 hover:text-slate-800 w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="p-8 overflow-y-auto max-h-96">
+        <div id="modalContent" class="space-y-4"></div>
       </div>
     </div>
   </div>
 </main>
 
 <script>
-const ongoingBtn = document.getElementById('ongoingBtn2');
-const completedBtn = document.getElementById('completedBtn2');
+const ongoingBtn = document.getElementById('ongoingBtn');
+const completedBtn = document.getElementById('completedBtn');
 const ongoingSection = document.getElementById('ongoingSection');
 const completedSection = document.getElementById('completedSection');
 const modal = document.getElementById('modal');
 const modalContent = document.getElementById('modalContent');
+const modalImage = document.getElementById('modalImage');
 
 const ongoingData = <?php echo json_encode($cards); ?>;
 const completedData = <?php echo json_encode(
   $completedCards,
 ); ?>;
 
-const ongoingActiveClasses = 'bg-amber-500 text-white rounded-full py-2 px-4 text-sm font-medium shadow-sm transition-all duration-200';
-const completedActiveClasses = 'bg-blue-800 text-white rounded-full py-2 px-4 text-sm font-medium shadow-sm transition-all duration-200';
-const inactiveClasses = 'text-gray-500 rounded-full py-2 px-4 text-sm font-medium hover:text-gray-700 transition-all duration-200';
+// Button styling classes
+const ongoingActive = 'bg-amber-500 text-white rounded-full py-2.5 px-5 text-sm font-semibold shadow-md transition-all duration-300 hover:bg-amber-600';
+const completedActive = 'bg-blue-600 text-white rounded-full py-2.5 px-5 text-sm font-semibold shadow-md transition-all duration-300 hover:bg-blue-700';
+const inactive = 'text-slate-600 rounded-full py-2.5 px-5 text-sm font-medium hover:text-slate-800 transition-all duration-300';
 
-const setOngoingActive = () => ongoingBtn.className = ongoingActiveClasses;
-const setCompletedActive = () => completedBtn.className = completedActiveClasses;
-const setInactive = (btn) => btn.className = inactiveClasses;
-const showSection = (section) => section?.classList.remove('hidden');
-const hideSection = (section) => section?.classList.add('hidden');
+function switchToOngoing() {
+  ongoingBtn.className = ongoingActive;
+  completedBtn.className = inactive;
+  ongoingSection.classList.remove('hidden');
+  completedSection.classList.add('hidden');
+}
 
-ongoingBtn.addEventListener('click', () => {
-  setOngoingActive();
-  setInactive(completedBtn);
-  showSection(ongoingSection);
-  hideSection(completedSection);
-});
+function switchToCompleted() {
+  completedBtn.className = completedActive;
+  ongoingBtn.className = inactive;
+  completedSection.classList.remove('hidden');
+  ongoingSection.classList.add('hidden');
+}
 
-completedBtn.addEventListener('click', () => {
-  setCompletedActive();
-  setInactive(ongoingBtn);
-  showSection(completedSection);
-  hideSection(ongoingSection);
-});
+ongoingBtn.addEventListener('click', switchToOngoing);
+completedBtn.addEventListener('click', switchToCompleted);
 
 function openModal(index, type) {
   const data = type === 'ongoing' ? ongoingData : completedData;
   const card = data[index];
+  const isCompleted = type === 'completed';
+
+  // Set modal image
+  modalImage.style.backgroundImage = `url('${card.bgImage}')`;
+  modalImage.style.backgroundSize = 'cover';
+  modalImage.style.backgroundPosition = 'center';
+
   modalContent.innerHTML = `
-    <h2 class="text-xl font-bold mb-2">${card.title}</h2>
-    <p><strong>Year:</strong> ${card.year} - ${card.end_year}</p>
-    <p><strong>Description:</strong> ${card.description || ''}</p>
-    <p><strong>Collaborator:</strong> ${card.collaborator || ''}</p>
-    <p><strong>Participant:</strong> ${card.participant || ''}</p>
-    ${type === 'completed' ? `
-      <p><strong>Paper Title:</strong> ${card.paper_title || ''}</p>
-      <p><strong>Author:</strong> ${card.author || ''}</p>
-      <p><strong>Vol/Pages:</strong> ${card.vol_pages || ''}</p>
-      <p><strong>Journal:</strong> ${card.journal || ''}</p>
-      <p><strong>Link:</strong> <a href="${card.link}" target="_blank" class="text-blue-600 underline">${card.link}</a></p>
-    ` : ''}
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-slate-800 mb-2">${card.title}</h2>
+      <div class="flex items-center gap-2">
+        <span class="px-3 py-1 text-xs font-semibold rounded-full ${isCompleted ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'}">
+          ${card.year} - ${card.end_year}
+        </span>
+        ${isCompleted ? '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Published</span>' : '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-700">In Progress</span>'}
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      ${card.description ? `
+        <div>
+          <h4 class="font-semibold text-slate-800 mb-1">Description</h4>
+          <p class="text-slate-600">${card.description}</p>
+        </div>
+      ` : ''}
+
+      <div>
+        <h4 class="font-semibold text-slate-800 mb-1">Collaborator</h4>
+        <p class="text-${isCompleted ? 'blue' : 'amber'}-600 font-medium">${card.collaborator}</p>
+      </div>
+
+      ${card.participant ? `
+        <div>
+          <h4 class="font-semibold text-slate-800 mb-1">Participant</h4>
+          <p class="text-slate-600">${card.participant}</p>
+        </div>
+      ` : ''}
+
+      ${isCompleted ? `
+        <div class="border-t border-slate-200 pt-4 mt-6">
+          <h4 class="font-semibold text-slate-800 mb-3">Publication Details</h4>
+          <div class="space-y-2 text-sm">
+            ${card.paper_title ? `<p><span class="font-medium text-slate-700">Paper:</span> ${card.paper_title}</p>` : ''}
+            ${card.author ? `<p><span class="font-medium text-slate-700">Author:</span> ${card.author}</p>` : ''}
+            ${card.journal ? `<p><span class="font-medium text-slate-700">Journal:</span> ${card.journal}</p>` : ''}
+            ${card.vol_pages ? `<p><span class="font-medium text-slate-700">Volume/Pages:</span> ${card.vol_pages}</p>` : ''}
+            ${card.link ? `
+              <p class="pt-2">
+                <a href="${card.link}" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                  View Publication
+                </a>
+              </p>
+            ` : ''}
+          </div>
+        </div>
+      ` : ''}
+    </div>
   `;
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   modal.classList.remove('flex');
   modal.classList.add('hidden');
+  document.body.style.overflow = 'auto';
 }
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal)
+    closeModal()
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden'))
+    closeModal()
+});
 </script>
