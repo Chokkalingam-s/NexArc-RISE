@@ -188,3 +188,7 @@ footer {
     transform: translateY(-6px);
   }
 }
+
+.ongoing {
+  @apply text-2xl font-medium tracking-tight text-amber-600;
+}

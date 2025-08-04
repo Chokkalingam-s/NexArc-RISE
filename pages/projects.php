@@ -1,8 +1,8 @@
-<main>
+<main class="pt-10 md:pt-0">
   <!-- Toggle Projects -->
-  <div class="fixed top-14 right-2 z-20">
+  <div class="fixed top-12 md:top-14 md:right-2 right-0 z-20">
     <div class="backdrop-blur-md rounded-full p-1 shadow-lg">
-      <div class="flex bg-white/60 rounded-full p-1">
+      <div class="flex bg-white/40 rounded-full p-1">
         <button class="bg-amber-500 text-white rounded-full py-2.5 px-5 text-sm font-semibold shadow-md transition-all duration-300 hover:bg-amber-600" id="ongoingBtn">
           Ongoing
         </button>
@@ -13,13 +13,13 @@
     </div>
   </div>
   <!-- Ongoing Projects Section -->
-  <section id="ongoingSection" class="container mx-auto px-2">
+  <section id="ongoingSection" class="px-2">
     <div class="mb-8">
-      <h2>Ongoing Projects</h2>
-      <h3 class="text-blue-800/90 font-medium">Current research and collaboration initiatives</h3>
+      <h2 class="ongoing head">Ongoing Projects</h2>
+      <h3 class="text-slate-600 font-medium">Current research and collaboration initiatives</h3>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <?php
       global $cards;
       include_once "assets/data.php";
@@ -79,13 +79,13 @@
   </section>
 
   <!-- Completed Projects Section -->
-  <section id="completedSection" class="container mx-auto px-6 hidden">
+  <section id="completedSection" class="mx-auto px-6 hidden">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-slate-800 mb-2">Completed Projects</h1>
+      <h1 class="text-2xl font-medium gradient_text">Completed Projects</h1>
       <p class="text-slate-600">Published research and finished collaborations</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <?php
       global $completedCards;
       foreach ($completedCards as $index => $card): ?>
@@ -101,7 +101,7 @@
           <span class="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-lg">
             <?= $card["year"] ?> - <?= $card["end_year"] ?>
           </span>
-          <div class="absolute bottom-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg">
+          <div class="absolute bottom-4 right-4 grad_primary text-white p-2 rounded-full shadow-lg">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
@@ -133,7 +133,7 @@
           <!-- Publication Status -->
           <div class="mt-4 pt-4 border-t border-slate-100">
             <div class="flex items-center justify-between">
-              <span class="text-green-600 font-medium text-sm">
+              <span class="gradient_text font-medium text-sm">
                 ✓ Published
               </span>
               <span class="text-blue-600 font-medium text-sm group-hover:text-blue-700 transition-colors">
@@ -220,10 +220,10 @@ function openModal(index, type) {
     <div class="mb-6">
       <h2 class="text-2xl font-bold text-slate-800 mb-2">${card.title}</h2>
       <div class="flex items-center gap-2">
-        <span class="px-3 py-1 text-xs font-semibold rounded-full ${isCompleted ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-500'}">
+        <span class="px-3 py-1 text-xs font-semibold rounded-full ${isCompleted ? 'bg-blue-200 text-blue-700' : 'bg-amber-100 text-amber-500'}">
           ${card.year} - ${card.end_year}
         </span>
-        ${isCompleted ? '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Published</span>' : '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-700">In Progress</span>'}
+        ${isCompleted ? '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-200 text-blue-700">Published</span>' : '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-amber-200 text-amber-600">In Progress</span>'}
       </div>
     </div>
 
