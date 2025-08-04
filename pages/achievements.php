@@ -1,39 +1,3 @@
-<style>
-  @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-  }
-  @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-      50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3); }
-  }
-  @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-  }
-  .float-animation { animation: float 6s ease-in-out infinite; }
-  .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-  .shimmer {
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      background-size: 200% 100%;
-      animation: shimmer 2s infinite;
-  }
-  .glass-morphism {
-      backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  .gradient-border {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 2px;
-      border-radius: 16px;
-  }
-  .gradient-border-inner {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 14px;
-      height: 100%;
-  }
-</style>
 <section class="grid lg:grid-cols-2 gap-8 p-8 min-h-[80vh] relative overflow-hidden">
   <!-- Animated background elements -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
