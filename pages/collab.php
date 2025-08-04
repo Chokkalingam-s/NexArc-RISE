@@ -150,7 +150,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
   </div>
 
   <!-- Divider -->
-  <div class="bg-gradient-to-b from-indigo-200 to-blue-300 w-full rounded-full"></div>
+  <div class="grad w-1 rounded-full"></div>
 
   <!-- Right Mentors -->
   <div class="p-4 h-screen sticky top-0 flex flex-col">

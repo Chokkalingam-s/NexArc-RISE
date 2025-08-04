@@ -261,6 +261,11 @@ const steps = ['Personal Information', 'Education & Demographics', 'Contact Info
 let currentStep = 1;
 const totalSteps = 4;
 
+const backBtn = document.getElementById('back-btn');
+const backSpacer = document.getElementById('back-spacer');
+const nextBtn = document.getElementById('next-btn');
+const submitBtn = document.getElementById('submit-btn');
+
 function updateUI() {
     // Update progress bar
     document.getElementById('progress-bar').style.width = `${(currentStep / totalSteps) * 100}%`;
@@ -304,11 +309,10 @@ function updateUI() {
     });
 
     // Update buttons
-    document.getElementById('back-btn').classList.toggle('hidden', currentStep === 1);
-    document.getElementById('back-spacer').classList.toggle('hidden', currentStep !== 1);
-    document.getElementById('next-btn').classList.toggle('hidden', currentStep === totalSteps);
-    document.getElementById('submit-btn').classList.toggle('hidden', currentStep !== totalSteps);
-}
+    backBtn.classList.toggle('hidden', currentStep === 1);
+    backSpacer.classList.toggle('hidden', currentStep !== 1);
+    nextBtn.classList.toggle('hidden', currentStep >= totalSteps);
+    }
 
 document.getElementById('next-btn').addEventListener('click', () => {
     if (currentStep < totalSteps) {

@@ -1,8 +1,8 @@
 <main>
   <!-- Toggle Projects -->
-  <div class="fixed top-16 right-2 z-20">
-    <div class="backdrop-blur-md rounded-full p-1 shadow-lg border border-white/20">
-      <div class="flex bg-slate-100/60 rounded-full p-1">
+  <div class="fixed top-14 right-2 z-20">
+    <div class="backdrop-blur-md rounded-full p-1 shadow-lg">
+      <div class="flex bg-white/60 rounded-full p-1">
         <button class="bg-amber-500 text-white rounded-full py-2.5 px-5 text-sm font-semibold shadow-md transition-all duration-300 hover:bg-amber-600" id="ongoingBtn">
           Ongoing
         </button>
@@ -12,12 +12,11 @@
       </div>
     </div>
   </div>
-
   <!-- Ongoing Projects Section -->
-  <section id="ongoingSection" class="container mx-auto px-6">
+  <section id="ongoingSection" class="container mx-auto px-2">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-slate-800 mb-2">Ongoing Projects</h1>
-      <p class="text-slate-600">Current research and collaboration initiatives</p>
+      <h2>Ongoing Projects</h2>
+      <h3 class="text-blue-800/90 font-medium">Current research and collaboration initiatives</h3>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -25,27 +24,27 @@
       global $cards;
       include_once "assets/data.php";
       foreach ($cards as $index => $card): ?>
-      <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="openModal(<?= $index ?>, 'ongoing')">
+      <div class="group bg-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onclick="openModal(<?= $index ?>, 'ongoing')">
 
         <!-- Image Header -->
-        <div class="relative h-48 overflow-hidden">
+        <div class="relative h-40 overflow-hidden">
           <img src="<?= $card["bgImage"] ?>" alt="<?= $card[
   "title"
 ] ?? "Project image" ?>"
                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-          <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-lg">
+          <span class="absolute top-2 right-2 bg-amber-500 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-lg">
             <?= $card["year"] ?> - <?= $card["end_year"] ?>
           </span>
         </div>
 
         <!-- Content -->
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-amber-600 transition-colors">
+        <div class="p-4">
+          <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-amber-500 transition-colors">
             <?= $card["title"] ?>
           </h3>
 
-          <div class="space-y-2 text-sm">
+          <div class="space-y-1 text-sm">
             <p class="text-slate-700 line-clamp-2">
               <span class="font-semibold text-slate-800">Description:</span>
               <?= $card["description"] ?>
@@ -53,7 +52,7 @@
 
             <p class="text-slate-700">
               <span class="font-semibold text-slate-800">Collaborator:</span>
-              <span class="text-amber-600"><?= $card[
+              <span class="text-amber-500"><?= $card[
                 "collaborator"
               ] ?></span>
             </p>
@@ -67,10 +66,10 @@
           </div>
 
           <!-- View More Button -->
-          <div class="mt-4 pt-4 border-t border-slate-100">
-            <span class="text-amber-600 font-medium text-sm group-hover:text-amber-700 transition-colors">
+          <div class="mt-2 pt-2 border-t border-amber-500 w-full flex items-center justify-end">
+            <button class="text-amber-500 font-medium text-sm group-hover:text-amber-500 transition-colors">
               View Details →
-            </span>
+            </button>
           </div>
         </div>
       </div>
@@ -90,7 +89,7 @@
       <?php
       global $completedCards;
       foreach ($completedCards as $index => $card): ?>
-      <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="openModal(<?= $index ?>, 'completed')">
+      <div class="group bg-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="openModal(<?= $index ?>, 'completed')">
 
         <!-- Image Header -->
         <div class="relative h-48 overflow-hidden">
@@ -151,7 +150,7 @@
 
   <!-- Modal -->
   <div id="modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+    <div class="bg-white/80 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
 
       <!-- Modal Header -->
       <div class="relative">
@@ -221,7 +220,7 @@ function openModal(index, type) {
     <div class="mb-6">
       <h2 class="text-2xl font-bold text-slate-800 mb-2">${card.title}</h2>
       <div class="flex items-center gap-2">
-        <span class="px-3 py-1 text-xs font-semibold rounded-full ${isCompleted ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'}">
+        <span class="px-3 py-1 text-xs font-semibold rounded-full ${isCompleted ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-500'}">
           ${card.year} - ${card.end_year}
         </span>
         ${isCompleted ? '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Published</span>' : '<span class="px-3 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-700">In Progress</span>'}
