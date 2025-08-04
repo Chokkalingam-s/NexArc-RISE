@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/style.css">
+  <meta name="description" content="NexArc RISE is a nonprofit innovation hub connecting global talent to transform bold ideas into real-world impact through research, mentorship, and international collaboration.">
   <link rel="icon" href="assets/icons/v3.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
