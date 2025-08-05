@@ -1584,6 +1584,9 @@
   .text-slate-800 {
     color: var(--color-slate-800);
   }
+  .text-slate-900 {
+    color: var(--color-slate-900);
+  }
   .text-transparent {
     color: transparent;
   }
