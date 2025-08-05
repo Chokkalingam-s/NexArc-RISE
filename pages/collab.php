@@ -6,10 +6,9 @@ include_once __DIR__ . "/../assets/collab_data.php";
 <section class="grid grid-cols-[68%_2%_30%] h-screen overflow-hidden">
   <!-- Left Scrollable Section -->
   <div class="overflow-y-auto space-y-8 h-full px-4 py-6">
-
     <!-- Scholarships -->
     <div>
-      <h2 class="text-2xl font-bold text-slate-800 mb-6">Scholarships</h2>
+      <h2 class="gradient_text mb-6">Scholarships</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <?php foreach ($scholarships as $item): ?>
           <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
@@ -43,7 +42,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
 
     <!-- Schools -->
     <div>
-      <h2 class="text-2xl font-bold text-slate-800 mb-6">Schools</h2>
+      <h2 class="gradient_text mb-6">Schools</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <?php foreach ($schools as $school): ?>
           <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
@@ -70,7 +69,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
 
     <!-- Testimonials -->
     <div>
-      <h2 class="text-2xl font-bold text-slate-800 mb-6">Student Success Stories</h2>
+      <h2 class="gradient_text mb-6">Student Success Stories</h2>
       <div class="grid sm:grid-cols-2 gap-6">
         <div class="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg">
           <div class="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600"></div>
@@ -91,7 +90,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
 
     <!-- Contact Form -->
     <div>
-      <h2 class="text-2xl font-bold text-slate-800 mb-6">Contact Us</h2>
+      <h2 class="gradient_text mb-6">Contact Us</h2>
       <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
 
         <!-- Interest Selection -->
@@ -150,35 +149,34 @@ include_once __DIR__ . "/../assets/collab_data.php";
   </div>
 
   <!-- Divider -->
-  <div class="grad w-1 rounded-full"></div>
+  <div class="grad_primary w-1 rounded-full"></div>
 
   <!-- Right Mentors -->
-  <div class="p-4 h-screen sticky top-0 flex flex-col">
-    <h3 class="text-xl font-bold text-slate-800 mb-4">Project Mentors</h3>
-
-    <div class="flex-1 overflow-hidden relative">
-      <div id="mentor-list" class="overflow-y-auto space-y-4 pr-2 h-full pb-8">
+  <div class="p-4 w-80 flex flex-col sticky top-0 self-start z-20 h-[calc(100vh-100px)]">
+    <h2 class="gradient_text mb-3 text-lg font-semibold">Project Mentors</h2>
+    <div class="flex-1 relative rounded-lg backdrop-blur-sm overflow-hidden">
+      <div id="mentor-list" class="h-full overflow-y-auto space-y-2 p-3 pr-1">
         <?php foreach ($mentors as $m): ?>
-          <div class="bg-white rounded-lg border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all p-4">
-            <div class="flex gap-3">
-              <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 flex-shrink-0"></div>
-              <div class="min-w-0">
-                <p class="font-semibold text-slate-800 text-sm mb-1"><?= $m[
-                  "name"
-                ] ?></p>
-                <p class="text-indigo-600 text-xs font-medium mb-2"><?= $m[
-                  "project"
-                ] ?></p>
-                <p class="text-slate-600 text-xs leading-relaxed"><?= $m[
-                  "note"
-                ] ?></p>
-              </div>
+        <div class="rounded-lg bg-white/40 hover:shadow-lg transition-all duration-300 p-5 border border-slate-200 relative group">
+          <div class="w-1.5 h-16 rounded-md absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-b from-indigo-500 to-blue-600 -translate-x-1 shadow-md"></div>
+          <div class="flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 flex-shrink-0 shadow-inner"></div>
+            <div class="min-w-0">
+              <p class="font-semibold text-slate-800 text-sm group-hover:text-indigo-700"><?= $m[
+                "name"
+              ] ?></p>
+              <p class="text-indigo-600 text-xs font-medium mb-1"><?= $m[
+                "project"
+              ] ?></p>
+              <p class="text-slate-600 text-xs leading-relaxed"><?= $m[
+                "note"
+              ] ?></p>
             </div>
           </div>
+        </div>
         <?php endforeach; ?>
       </div>
-
-      <div id="scroll-hint" class="absolute bottom-2 left-0 right-4 text-center text-xs text-slate-400 bg-white/80 py-1 rounded">
+      <div id="scroll-hint" class="absolute bottom-0 left-0 right-0 text-center text-xs gradient_text py-1 bg-white/60 backdrop-blur-sm">
         Scroll for more mentors ↓
       </div>
     </div>

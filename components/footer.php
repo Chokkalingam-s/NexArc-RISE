@@ -14,7 +14,7 @@
         <div class="flex items-center gap-6">
           <p class="italic text-blue-200">Empowering ideas beyond borders.</p>
           <div class="flex items-center gap-2">
-            <div class="w-2 h-2 grad_secondary rounded-full animate-pulse"></div>
+            <div class="dot"></div>
             <span class="text-sm text-blue-200">Building the future</span>
           </div>
         </div>

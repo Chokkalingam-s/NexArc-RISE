@@ -13,9 +13,9 @@
 </head>
 <body>
   <div class="fixed top-0 w-full h-screen overflow-hidden pointer-events-none">
-    <div class="absolute top-0 left-0 w-60 h-60 bg-blue-400/20 rounded-full blur-2xl animate-slow-bounce"></div>
-    <div class="absolute top-1/3 left-1/2 w-72 h-72 bg-blue-600/20 rounded-full blur-2xl animate-slow-bounce delay-500"></div>
-    <div class="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-2xl animate-slow-bounce delay-1000"></div>
+    <div class="absolute top-0 left-0 w-60 h-60 bg-blue-200/20 rounded-full blur-2xl animate-slow-bounce"></div>
+    <div class="absolute top-1/3 left-1/2 w-72 h-72 bg-blue-400/20 rounded-full blur-2xl animate-slow-bounce delay-500"></div>
+    <div class="absolute bottom-0 right-0 size-64 bg-blue-500/20 rounded-full blur-2xl animate-slow-bounce delay-1000"></div>
   </div>
 
   <style>

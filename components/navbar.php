@@ -1,3 +1,4 @@
+
 <?php
 $currentPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $navItems = [
@@ -28,8 +29,8 @@ $navItems = [
   ],
 ];
 ?>
-<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-md text-blue-800 rounded-xs">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-1">
+<header class="fixed top-0 w-full z-50 backdrop-blur-sm shadow-md gradient_text rounded-xs">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-1 text-blue-800">
     <a href="/" class="flex items-center gap-x-4">
       <img src="assets/icons/v3.png" alt="logo" class="size-10">
       <span class="font-semibold text-xl">NexArc RISE</span>
