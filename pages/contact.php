@@ -78,18 +78,18 @@
   ]; ?>
     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 relative z-10">
       <?php foreach ($team as $member): ?>
-        <div class="grad_primary p-2 rounded-xl hover-lift shimmer-overlay group cursor-pointer">
+        <div class="grad_primary p-1 rounded-xl hover-lift shimmer-overlay group cursor-pointer">
           <div class="grad_primary p-2 rounded-xl relative aspect-square bg-white/40">
             <img src="<?= $member["img"] ?>" alt="<?= $member[
   "name"
-] ?>" class="absolute inset-0 w-full h-full object-cover" />
+] ?>" class="absolute inset-0 w-full h-full object-cover rounded-xl" />
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90">
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-<?= $member[
               "color"
             ] ?>-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
             </div>
-            <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
               <h3 class="font-bold text-lg mb-1 group-hover:text-<?= $member[
                 "color"
               ] ?>-300 transition-colors">
@@ -100,21 +100,15 @@
               ] ?>-200">
                 <?= $member["role"] ?>
               </p>
-              <p class="text-xs opacity-75 group-hover:text-amber-300 transition-colors">
+              <p class="text-xs opacity-75 group-hover:text-amber-500 transition-colors">
                 <?= $member["email"] ?>
               </p>
               <div class="flex gap-2 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
-                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors cursor-pointer">
-                  <!-- Twitter Icon -->
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 4.557c...z" />
-                  </svg>
+                <div class="size-8 p-2 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors cursor-pointer">
+                  <img src="/../assets/icons/instagram-brands.svg" alt="">
                 </div>
-                <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-500 transition-colors cursor-pointer">
-                  <!-- LinkedIn Icon -->
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h...z" />
-                  </svg>
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors cursor-pointer">
+                  <img src="/../assets/icons/linkedin-brands-solid.svg" alt="">
                 </div>
               </div>
             </div>
