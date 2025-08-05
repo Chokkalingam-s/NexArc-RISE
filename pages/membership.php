@@ -1,18 +1,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <section class="max-w-6xl mx-auto py-10 px-4">
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
         <!-- Left Panel - Stepper -->
         <div class="lg:col-span-1">
-            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 text-indigo-900 relative w-fit mx-auto">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 gradient_text relative w-fit mx-auto">
                 Become a Member
-                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-14 h-1 bg-indigo-600 rounded-full"></span>
+                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-14 h-1 grad_primary rounded-full"></span>
             </h2>
 
             <div class="space-y-6">
                 <div class="step-item flex items-center gap-4" data-step="1">
                     <div class="w-0.5 h-6 bg-slate-300 step-connector hidden"></div>
-                    <div class="step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-gradient-to-r from-indigo-500 to-indigo-700 shadow-lg">
+                    <div class="step-circle size-12 rounded-full flex items-center justify-center text-white shadow-lg">
                         <i class="fas fa-user text-sm"></i>
                     </div>
                     <div>
@@ -23,7 +22,7 @@
 
                 <div class="step-item flex items-center gap-4" data-step="2">
                     <div class="w-0.5 h-6 bg-slate-300 step-connector"></div>
-                    <div class="step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
+                    <div class="step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
                         <i class="fas fa-graduation-cap text-sm"></i>
                     </div>
                     <div>
@@ -34,7 +33,7 @@
 
                 <div class="step-item flex items-center gap-4" data-step="3">
                     <div class="w-0.5 h-6 bg-slate-300 step-connector"></div>
-                    <div class="step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
+                    <div class="step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
                         <i class="fas fa-address-book text-sm"></i>
                     </div>
                     <div>
@@ -45,7 +44,7 @@
 
                 <div class="step-item flex items-center gap-4" data-step="4">
                     <div class="w-0.5 h-6 bg-slate-300 step-connector"></div>
-                    <div class="step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
+                    <div class="step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
                         <i class="fas fa-check-circle text-sm"></i>
                     </div>
                     <div>
@@ -257,75 +256,71 @@
 </section>
 
 <script>
-const steps = ['Personal Information', 'Education & Demographics', 'Contact Information', 'Final Details'];
-let currentStep = 1;
-const totalSteps = 4;
+  const steps = ['Personal Information', 'Education & Demographics', 'Contact Information', 'Final Details'];
+  let currentStep = 1;
+  const totalSteps = 4;
 
-const backBtn = document.getElementById('back-btn');
-const backSpacer = document.getElementById('back-spacer');
-const nextBtn = document.getElementById('next-btn');
-const submitBtn = document.getElementById('submit-btn');
+  function updateUI() {
+      // Update progress bar
+      document.getElementById('progress-bar').style.width = `${(currentStep / totalSteps) * 100}%`;
 
-function updateUI() {
-    // Update progress bar
-    document.getElementById('progress-bar').style.width = `${(currentStep / totalSteps) * 100}%`;
+      // Update title
+      document.getElementById('step-title').textContent = steps[currentStep - 1];
 
-    // Update title
-    document.getElementById('step-title').textContent = steps[currentStep - 1];
+      // Show/hide form steps
+      document.querySelectorAll('.form-step').forEach((step, index) => {
+          step.classList.toggle('hidden', index !== currentStep - 1);
+      });
 
-    // Show/hide form steps
-    document.querySelectorAll('.form-step').forEach((step, index) => {
-        step.classList.toggle('hidden', index !== currentStep - 1);
-    });
+      // Update stepper UI
+      document.querySelectorAll('.step-item').forEach((item, index) => {
+          const stepNum = index + 1;
+          const circle = item.querySelector('.step-circle');
+          const label = item.querySelector('p:first-child');
+          const subLabel = item.querySelector('p:last-child');
+          const connector = item.querySelector('.step-connector');
 
-    // Update stepper UI
-    document.querySelectorAll('.step-item').forEach((item, index) => {
-        const stepNum = index + 1;
-        const circle = item.querySelector('.step-circle');
-        const label = item.querySelector('p:first-child');
-        const subLabel = item.querySelector('p:last-child');
-        const connector = item.querySelector('.step-connector');
+          if (stepNum < currentStep) {
+              // Completed
+              circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_primary shadow-lg';
+              circle.innerHTML = '<i class="fas fa-check text-sm"></i>';
+              label.className = 'text-sm font-semibold text-blue-800';
+              subLabel.className = 'text-xs text-slate-500';
+              if (connector) connector.className = 'w-0.5 h-6 grad_primary step-connector';
+          } else if (stepNum === currentStep) {
+              // Active
+              circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_secondary shadow-lg transform scale-110';
+              label.className = 'text-sm font-semibold text-amber-600';
+              subLabel.className = 'text-xs text-slate-500';
+              if (connector) connector.className = 'w-0.5 h-6 bg-amber-500 step-connector';
+          } else {
+              // Pending
+              circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg';
+              label.className = 'text-sm font-semibold text-slate-600';
+              subLabel.className = 'text-xs text-slate-400';
+              if (connector) connector.className = 'w-0.5 h-6 bg-slate-300 step-connector';
+          }
+      });
 
-        if (stepNum < currentStep) {
-            // Completed
-            circle.className = 'step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-gradient-to-r from-green-500 to-green-700 shadow-lg';
-            circle.innerHTML = '<i class="fas fa-check text-sm"></i>';
-            label.className = 'text-sm font-semibold text-green-700';
-            subLabel.className = 'text-xs text-slate-500';
-            if (connector) connector.className = 'w-0.5 h-6 bg-green-500 step-connector';
-        } else if (stepNum === currentStep) {
-            // Active
-            circle.className = 'step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-gradient-to-r from-indigo-500 to-indigo-700 shadow-lg transform scale-110';
-            label.className = 'text-sm font-semibold text-indigo-700';
-            subLabel.className = 'text-xs text-slate-500';
-            if (connector) connector.className = 'w-0.5 h-6 bg-indigo-500 step-connector';
-        } else {
-            // Pending
-            circle.className = 'step-circle w-12 h-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg';
-            label.className = 'text-sm font-semibold text-slate-600';
-            subLabel.className = 'text-xs text-slate-400';
-            if (connector) connector.className = 'w-0.5 h-6 bg-slate-300 step-connector';
-        }
-    });
+      // Update buttons
+      document.getElementById('back-btn').classList.toggle('hidden', currentStep === 1);
+      document.getElementById('back-spacer').classList.toggle('hidden', currentStep !== 1);
+      document.getElementById('next-btn').classList.toggle('hidden', currentStep === totalSteps);
+      document.getElementById('submit-btn').classList.toggle('hidden', currentStep !== totalSteps);
+  }
 
-    // Update buttons
-    backBtn.classList.toggle('hidden', currentStep === 1);
-    backSpacer.classList.toggle('hidden', currentStep !== 1);
-    nextBtn.classList.toggle('hidden', currentStep >= totalSteps);
-    }
+  document.getElementById('next-btn').addEventListener('click', () => {
+      if (currentStep < totalSteps) {
+          currentStep++;
+          updateUI();
+      }
+  });
 
-document.getElementById('next-btn').addEventListener('click', () => {
-    if (currentStep < totalSteps) {
-        currentStep++;
-        updateUI();
-    }
-});
-
-document.getElementById('back-btn').addEventListener('click', () => {
-    if (currentStep > 1) {
-        currentStep--;
-        updateUI();
-    }
-});
-updateUI();
+  document.getElementById('back-btn').addEventListener('click', () => {
+      if (currentStep > 1) {
+          currentStep--;
+          updateUI();
+      }
+  });
+  updateUI();
 </script>

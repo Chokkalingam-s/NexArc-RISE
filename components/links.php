@@ -14,7 +14,7 @@
   <!-- Site Info Column -->
   <div class="space-y-6">
     <div class="space-y-4">
-      <h1 class="text-3xl font-bold gradient-text">
+      <h1 class="text-2xl font-bold gradient-text">
         NexArc RISE
       </h1>
       <p class="leading-relaxed gradient-text">
@@ -31,7 +31,7 @@
 
   <!-- Contact Us -->
   <div class="space-y-6">
-    <h2 class="text-xl font-bold relative gradient-text">
+    <h2 class="head font-bold relative gradient-text">
       Contact Us
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>
     </h2>
@@ -49,7 +49,7 @@
 
   <!-- Follow Us -->
   <div class="space-y-6">
-    <h2 class="text-xl font-bold relative gradient-text">
+    <h2 class="head relative font-bold gradient-text">
       Follow Us
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>
     </h2>
@@ -76,7 +76,7 @@
 
   <!-- Quick Links -->
   <div class="space-y-6">
-    <h2 class="text-xl font-bold relative gradient-text">
+    <h2 class="head font-bold relative gradient-text">
       Quick Links
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>
     </h2>

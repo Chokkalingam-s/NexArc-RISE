@@ -13,7 +13,7 @@ main {
 }
 
 .grad_secondary {
-  @apply bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 text-slate-600 hover:text-slate-900;
+  @apply bg-gradient-to-r from-amber-600 via-amber-500 to-amber-400 text-slate-600 hover:text-slate-900;
 }
 
 h2:not(.head) {
@@ -147,7 +147,7 @@ main {
   @apply bg-gradient-to-r from-blue-800 via-blue-700 to-blue-600 bg-clip-text text-transparent;
 }
 .gradient_text2 {
-  @apply bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-amber-600 via-amber-500 to-amber-400 bg-clip-text text-transparent;
 }
 .dot {
   @apply mr-2 size-2 animate-pulse rounded-full bg-blue-600;
@@ -190,7 +190,7 @@ footer {
 }
 
 .ongoing {
-  @apply text-2xl font-medium tracking-tight text-amber-600;
+  @apply text-2xl font-medium tracking-tight text-amber-500;
 }
 
 /*acheivements*/

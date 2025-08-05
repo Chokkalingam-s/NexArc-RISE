@@ -11,7 +11,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
       <h2 class="gradient_text mb-6">Scholarships</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <?php foreach ($scholarships as $item): ?>
-          <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+          <div class="bg-white/20 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
             <div class="flex h-52">
               <img src="<?= $item[
                 "image"
@@ -45,7 +45,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
       <h2 class="gradient_text mb-6">Schools</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <?php foreach ($schools as $school): ?>
-          <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+          <div class="bg-white/20 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
             <img src="<?= $school[
               "image"
             ] ?>" alt="School" class="w-full aspect-[16/9] object-cover">
@@ -58,7 +58,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
               ] ?></p>
               <a href="<?= $school[
                 "link"
-              ] ?>" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm transition-colors" target="_blank">
+              ] ?>" class="gradient_text font-medium text-sm transition-colors" target="_blank">
                 Visit Site →
               </a>
             </div>
@@ -68,30 +68,43 @@ include_once __DIR__ . "/../assets/collab_data.php";
     </div>
 
     <!-- Testimonials -->
+    <?php $students = [
+      [
+        "name" => "Student A",
+        "desc" => "Benefited from Kyoto Tech Program",
+        "bg" => "bg-gradient-to-r from-indigo-500 to-blue-600",
+      ],
+      [
+        "name" => "Student B",
+        "desc" => "Joined Exchange at Berlin Engineering",
+        "bg" => "bg-gradient-to-r from-purple-500 to-indigo-600",
+      ],
+    ]; ?>
+
     <div>
-      <h2 class="gradient_text mb-6">Student Success Stories</h2>
+      <h2 class="gradient_text mb-4">Student Success Stories</h2>
       <div class="grid sm:grid-cols-2 gap-6">
-        <div class="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600"></div>
-          <div>
-            <p class="font-semibold text-slate-800 text-lg">Student A</p>
-            <p class="text-slate-600">Benefited from Kyoto Tech Program</p>
+        <?php foreach ($students as $student): ?>
+          <div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md">
+            <div class="size-16 px-4 rounded-full <?= $student[
+              "bg"
+            ] ?>"></div>
+            <div>
+              <p class="font-semibold text-slate-800 text-lg"><?= $student[
+                "name"
+              ] ?></p>
+              <p class="text-slate-600"><?= $student[
+                "desc"
+              ] ?></p>
+            </div>
           </div>
-        </div>
-        <div class="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600"></div>
-          <div>
-            <p class="font-semibold text-slate-800 text-lg">Student B</p>
-            <p class="text-slate-600">Joined Exchange at Berlin Engineering</p>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
-
     <!-- Contact Form -->
     <div>
       <h2 class="gradient_text mb-6">Contact Us</h2>
-      <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+      <div class="bg-white/40 rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
 
         <!-- Interest Selection -->
         <div class="mb-6">
@@ -157,10 +170,10 @@ include_once __DIR__ . "/../assets/collab_data.php";
     <div class="flex-1 relative rounded-lg backdrop-blur-sm overflow-hidden">
       <div id="mentor-list" class="h-full overflow-y-auto space-y-2 p-3 pr-1">
         <?php foreach ($mentors as $m): ?>
-        <div class="rounded-lg bg-white/40 hover:shadow-lg transition-all duration-300 p-5 border border-slate-200 relative group">
-          <div class="w-1.5 h-16 rounded-md absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-b from-indigo-500 to-blue-600 -translate-x-1 shadow-md"></div>
+        <div class="rounded-lg bg-white/40 hover:shadow-lg transition-all duration-300 p-5 relative group">
+          <div class="w-1.5 h-16 rounded-md absolute left-0 top-1/2 -translate-y-1/2 grad_primary -translate-x-1 shadow-md"></div>
           <div class="flex gap-4 items-start">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 flex-shrink-0 shadow-inner"></div>
+            <div class="size-16 rounded-full grad_secondary flex-shrink-0 shadow-inner"></div>
             <div class="min-w-0">
               <p class="font-semibold text-slate-800 text-sm group-hover:text-indigo-700"><?= $m[
                 "name"
@@ -176,7 +189,7 @@ include_once __DIR__ . "/../assets/collab_data.php";
         </div>
         <?php endforeach; ?>
       </div>
-      <div id="scroll-hint" class="absolute bottom-0 left-0 right-0 text-center text-xs gradient_text py-1 bg-white/60 backdrop-blur-sm">
+      <div id="scroll-hint" class="absolute bottom-0 left-0 right-0 text-center text-sm gradient_text py-1 bg-white/60 backdrop-blur-sm">
         Scroll for more mentors ↓
       </div>
     </div>
@@ -184,14 +197,14 @@ include_once __DIR__ . "/../assets/collab_data.php";
 </section>
 
 <script>
-const container = document.getElementById('mentor-list');
-const hint = document.getElementById('scroll-hint');
+  const container = document.getElementById('mentor-list');
+  const hint = document.getElementById('scroll-hint');
 
-function updateScrollHint() {
-  const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
-  hint.style.opacity = atBottom ? '0' : '1';
-}
+  function updateScrollHint() {
+    const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+    hint.style.opacity = atBottom ? '0' : '1';
+  }
 
-container.addEventListener('scroll', updateScrollHint);
-window.addEventListener('load', updateScrollHint);
+  container.addEventListener('scroll', updateScrollHint);
+  window.addEventListener('load', updateScrollHint);
 </script>
