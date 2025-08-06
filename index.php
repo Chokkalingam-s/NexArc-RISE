@@ -47,11 +47,9 @@
   define("ROOT", __DIR__);
 
   $base = rtrim(dirname($_SERVER["PHP_SELF"]), "/");
-  $request = str_replace(
-    $base,
-    "",
-    parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH),
-  );
+  $requestUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+  $request =
+    "/" . ltrim(str_replace($base, "", $requestUri), "/");
 
   if ($request !== "/") {
     include_once ROOT . "/components/navbar.php";
