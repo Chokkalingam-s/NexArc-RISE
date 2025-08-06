@@ -9,10 +9,9 @@
   }
   return "<!-- Missing icon: $path -->";
 } ?>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto p-8 rounded-xl">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto p-4 rounded-xl">
   <!-- Site Info Column -->
-  <div class="space-y-6">
+  <div class="space-y-4">
     <div class="space-y-4">
       <h1 class="text-2xl font-bold gradient-text">
         NexArc RISE
@@ -30,17 +29,17 @@
   </div>
 
   <!-- Contact Us -->
-  <div class="space-y-6">
+  <div class="space-y-4">
     <h2 class="head font-bold relative gradient-text">
       Contact Us
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>
     </h2>
-    <div class="space-y-4">
-      <div class="flex items-center gap-3">
+    <div class="space-y-2">
+      <div class="flex items-center gap-2">
         <?= inline_svg("assets/icons/phone-solid.svg") ?>
         <span class="gradient-text">+81-80-4842-8090</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <?= inline_svg("assets/icons/envelope-solid.svg") ?>
         <a href="mailto:nexarcrise@gmail.com" class="hover:underline gradient-text">nexarcrise@gmail.com</a>
       </div>
@@ -48,26 +47,26 @@
   </div>
 
   <!-- Follow Us -->
-  <div class="space-y-6">
+  <div class="space-y-4">
     <h2 class="head relative font-bold gradient-text">
       Follow Us
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>
     </h2>
     <div class="space-y-3">
       <a href="https://www.instagram.com/nexarc_rise/" target="_blank"
-         class="flex items-center gap-3">
+         class="flex items-center gap-2">
            <?= inline_svg("assets/icons/instagram-brands.svg") ?>
         <span class="group-hover:underline gradient-text">Instagram</span>
       </a>
       <a href="https://www.linkedin.com/company/nexarc-rise/" target="_blank"
-         class="flex items-center gap-3">
+         class="flex items-center gap-2">
            <?= inline_svg(
              "assets/icons/linkedin-brands-solid.svg",
            ) ?>
         <span class="group-hover:underline gradient-text">LinkedIn</span>
       </a>
       <a href="https://whatsapp.com/channel/0029Vb6nSRJCcW4oxI2qbA0Y" target="_blank"
-         class="flex items-center gap-3">
+         class="flex items-center gap-2">
            <?= inline_svg("assets/icons/whatsapp.svg") ?>
         <span class="group-hover:underline gradient-text">WhatsApp</span>
       </a>
@@ -75,7 +74,7 @@
   </div>
 
   <!-- Quick Links -->
-  <div class="space-y-6">
+  <div class="space-y-4">
     <h2 class="head font-bold relative gradient-text">
       Quick Links
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>

@@ -78,4 +78,18 @@ $schools = [
     "link" => "https://osakatech.jp",
   ],
 ];
+//  Testimonials
+
+$students = [
+  [
+    "name" => "Student A",
+    "desc" => "Benefited from Kyoto Tech Program",
+    "bg" => "bg-gradient-to-r from-indigo-500 to-blue-600",
+  ],
+  [
+    "name" => "Student B",
+    "desc" => "Joined Exchange at Berlin Engineering",
+    "bg" => "bg-gradient-to-r from-purple-500 to-indigo-600",
+  ],
+];
 ?>

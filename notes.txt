@@ -29,3 +29,6 @@ projects - acheivement right side ->  project rifght side
 
 
 confernces & journals -> completed projects
+
+qucik links modal popup
+on succesful page for form

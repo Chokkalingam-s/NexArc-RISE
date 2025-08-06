@@ -44,8 +44,8 @@
     background-size: 50px 50px;
   }
 </style>
-<section class="min-h-[75vh] c  px-4 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-[60%_40%] items-center gap-12 relative z-10">
+<section class="min-h-[70vh] c px-4 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-[60%_40%] items-center gap-x-20 relative z-10">
     <!-- Text Panel -->
     <div class="space-y-8 slide-in">
       <!-- Main Headline -->
