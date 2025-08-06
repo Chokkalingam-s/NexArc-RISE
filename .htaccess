@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /nexarc-rise/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

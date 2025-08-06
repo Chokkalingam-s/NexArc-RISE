@@ -57,13 +57,13 @@
 
   $routes = [
     "/" => ROOT . "/pages/landing.php",
-    "/about" => ROOT . "/pages/about.php",
-    "/projects" => ROOT . "/pages/projects.php",
-    "/contact" => ROOT . "/pages/contact.php",
-    "/learning" => ROOT . "/pages/learning.php",
-    "/achievements" => ROOT . "/pages/achievements.php",
-    "/membership" => ROOT . "/pages/membership.php",
-    "/collab" => ROOT . "/pages/collab.php",
+    "/NexArc-RISE/about" => ROOT . "/pages/about.php",
+    "/NexArc-RISE/projects" => ROOT . "/pages/projects.php",
+    "/NexArc-RISE/contact" => ROOT . "/pages/contact.php",
+    "/NexArc-RISE/learning" => ROOT . "/pages/learning.php",
+    "/NexArc-RISE/achievements" => ROOT . "/pages/achievements.php",
+    "/NexArc-RISE/membership" => ROOT . "/pages/membership.php",
+    "/NexArc-RISE/collab" => ROOT . "/pages/collab.php",
   ];
   if (array_key_exists($request, $routes)) {
     require $routes[$request];

@@ -3,27 +3,27 @@ $currentPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $navItems = [
   [
     "label" => "Projects",
-    "href" => "/projects",
+    "href" => "/NexArc-RISE/projects",
     "icon" => "folder-tree-solid-full.svg",
   ],
   [
     "label" => "Collab",
-    "href" => "/collab",
+    "href" => "/NexArc-RISE/collab",
     "icon" => "users-solid-full.svg",
   ],
   [
     "label" => "Membership",
-    "href" => "/membership",
+    "href" => "/NexArc-RISE/membership",
     "icon" => "address-card-solid-full.svg",
   ],
   [
     "label" => "Achievements",
-    "href" => "/achievements",
+    "href" => "/NexArc-RISE/achievements",
     "icon" => "medal-solid-full.svg",
   ],
   [
     "label" => "Contact",
-    "href" => "/contact",
+    "href" => "/NexArc-RISE/contact",
     "icon" => "phone-solid-full.svg",
   ],
 ];
