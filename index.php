@@ -56,6 +56,7 @@
 
   $routes = [
     "/" => ROOT . "/pages/landing.php",
+    "/NexArc-RISE/" => ROOT . "/pages/landing.php",
     "/NexArc-RISE/about" => ROOT . "/pages/about.php",
     "/NexArc-RISE/projects" => ROOT . "/pages/projects.php",
     "/NexArc-RISE/contact" => ROOT . "/pages/contact.php",
