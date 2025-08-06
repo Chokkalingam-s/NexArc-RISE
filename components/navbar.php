@@ -11,16 +11,17 @@ $navItems = [
     "href" => "/NexArc-RISE/collab",
     "icon" => "users-solid-full.svg",
   ],
+    [
+    "label" => "Achievements",
+    "href" => "/NexArc-RISE/achievements",
+    "icon" => "medal-solid-full.svg",
+  ],
   [
     "label" => "Membership",
     "href" => "/NexArc-RISE/membership",
     "icon" => "address-card-solid-full.svg",
   ],
-  [
-    "label" => "Achievements",
-    "href" => "/NexArc-RISE/achievements",
-    "icon" => "medal-solid-full.svg",
-  ],
+
   [
     "label" => "Contact",
     "href" => "/NexArc-RISE/contact",
