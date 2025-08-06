@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="<?= dirname(
+    $_SERVER["PHP_SELF"],
+  ) ?>/style.css">
   <meta name="description" content="NexArc RISE is a nonprofit innovation hub connecting global talent to transform bold ideas into real-world impact through research, mentorship, and international collaboration.">
   <link rel="icon" href="assets/icons/v3.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +46,12 @@
   <?php
   define("ROOT", __DIR__);
 
-  $request = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+  $base = rtrim(dirname($_SERVER["PHP_SELF"]), "/");
+  $request = str_replace(
+    $base,
+    "",
+    parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH),
+  );
 
   if ($request !== "/") {
     include_once ROOT . "/components/navbar.php";
@@ -69,11 +76,5 @@
 
   include_once ROOT . "/components/footer.php";
   ?>
-
-  <!-- <script>
-  setInterval(()=>{
-    location.reload()
-  },10000)
-  </script> -->
 </body>
 </html>
