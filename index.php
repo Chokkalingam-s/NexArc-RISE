@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="<?= dirname(
-    $_SERVER["PHP_SELF"],
-  ) ?>/style.css">
+  <base href="<?= rtrim(dirname($_SERVER["PHP_SELF"]), "/") ?>/">
+  <link rel="stylesheet" href="style.css">
   <meta name="description" content="NexArc RISE is a nonprofit innovation hub connecting global talent to transform bold ideas into real-world impact through research, mentorship, and international collaboration.">
   <link rel="icon" href="assets/icons/v3.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,6 +64,7 @@
     "/membership" => ROOT . "/pages/membership.php",
     "/collab" => ROOT . "/pages/collab.php",
   ];
+
   if (array_key_exists($request, $routes)) {
     require $routes[$request];
   } else {

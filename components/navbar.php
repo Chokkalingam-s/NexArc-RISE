@@ -1,4 +1,5 @@
 <?php
+$base = rtrim(dirname($_SERVER["PHP_SELF"]), "/");
 $currentPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $navItems = [
   [
@@ -30,7 +31,7 @@ $navItems = [
 ?>
 <header class="fixed top-0 w-full z-50 backdrop-blur-sm shadow-md bg-white/80 rounded-xs">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-1 text-blue-800">
-    <a href="/" class="flex items-center gap-x-4">
+    <a href="<?= $base ?>/" class="flex items-center gap-x-4">
       <img src="assets/icons/v3.png" alt="logo" class="size-10">
       <span class="font-semibold text-xl">NexArc RISE</span>
     </a>
@@ -44,10 +45,11 @@ $navItems = [
 
     <nav class="hidden md:flex gap-6 font-medium">
       <?php foreach ($navItems as $item): ?>
-      <?php $isActive = $currentPath === $item["href"]; ?>
-      <a href="<?= $item[
-        "href"
-      ] ?>" class="flex items-center gap-2 <?= $isActive
+        <?php
+        $fullHref = $base . $item["href"];
+        $isActive = $currentPath === $fullHref;
+        ?>
+        <a href="<?= $fullHref ?>" class="flex items-center gap-2 <?= $isActive
   ? "text-amber-500 font-semibold"
   : "" ?>">
           <span class="size-5">
@@ -70,17 +72,17 @@ $navItems = [
 
   <div id="mobile-menu" class="md:hidden hidden p-4 space-y-2 text-right items-end">
     <?php foreach ($navItems as $item): ?>
-      <?php $isActive = $currentPath === $item["href"]; ?>
-      <a href="<?= $item[
-        "href"
-      ] ?>" class="flex flex-row-reverse items-center gap-2 py-2 border-r-2 pr-4 <?= $isActive
+      <?php
+      $fullHref = $base . $item["href"];
+      $isActive = $currentPath === $fullHref;
+      ?>
+      <a href="<?= $fullHref ?>" class="flex flex-row-reverse items-center gap-2 py-2 border-r-2 pr-4 <?= $isActive
   ? "text-amber-500 font-semibold border-amber-500"
   : "border-blue-800" ?>">
         <?= $item["label"] ?>
       </a>
     <?php endforeach; ?>
   </div>
-
 </header>
 
 <script>
