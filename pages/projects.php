@@ -179,7 +179,7 @@ foreach ($result as $row) {
         "collaborator" => $row["colloborator"] ?? "",
         "year"         => $row["year_of_start"],
         "end_year"     => $row["year_of_end"],
-        "summary"      => $row["details"], // mapping summary to details
+        "summary"      => $row["description"], // mapping summary to details
         "participant"         => $row["participant"], // mapping participant if needed
         "paper_title"  => $row["paper_title"],
         "author"       => $row["authors"],
