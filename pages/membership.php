@@ -2,7 +2,7 @@
 <section class="max-w-6xl mx-auto py-10 px-4">
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
     <!-- Left Panel - Stepper -->
-    <div class="lg:col-span-1">
+    <div class="lg:col-span-1"> 
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 gradient_text relative w-fit mx-auto">
         Become a Member
         <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-14 h-1 grad_primary rounded-full">
