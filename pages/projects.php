@@ -185,7 +185,7 @@ foreach ($result as $row) {
         "year"         => $row["year_of_start"],
         "end_year"     => $row["year_of_end"],
         "summary"      => $row["description"], // mapping summary to details
-        "participant"         => $row["participant"], // mapping participant if needed
+        "participant"  => $row["participant"], // mapping participant if needed
         "paper_title"  => $row["paper_title"],
         "author"       => $row["authors"],
         "details"      => $row["details"] ?? "", // assuming details is the volume or other info
