@@ -77,9 +77,14 @@ try {
       <?php foreach ($projects as $proj): ?>
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card project-card shadow-sm">
-            <?php if (!empty($proj['image']) && file_exists(__DIR__ . '/../' . ltrim($proj['image'], '/'))): ?>
-              <img src="<?= htmlspecialchars($proj['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($proj['title']) ?>">
-            <?php else: ?>
+     <?php
+$imagePath = __DIR__ . '/../' . ltrim($proj['image'], '/'); // absolute path check
+$imageURL = '../' . ltrim($proj['image'], '/'); // web URL
+
+if (!empty($proj['image']) && file_exists($imagePath)): ?>
+    <img src="<?= htmlspecialchars($imageURL) ?>" class="card-img-top" alt="<?= htmlspecialchars($proj['title']) ?>">
+<?php else: ?>
+
               <div class="bg-light d-flex align-items-center justify-content-center" style="height:180px;">
                 <i class="bi bi-image" style="font-size:2rem;color:#888;"></i>
               </div>

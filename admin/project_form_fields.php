@@ -32,7 +32,9 @@ if ($editing) {
     <label class="form-label">Image (cover)</label>
     <input type="file" accept="image/*" name="image" class="form-control">
     <?php if (!empty($data['image']) && $editing): ?>
-      <small class="text-muted">Current: <a href="<?= htmlspecialchars($data['image']) ?>" target="_blank">view</a></small>
+      <?php $imageURL = '../' . ltrim($data['image'], '/'); ?>
+<small class="text-muted">Current: <a href="<?= htmlspecialchars($imageURL) ?>" target="_blank">view</a></small>
+
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="removeImage" name="remove_image" value="1">
         <label class="form-check-label" for="removeImage">Remove existing image</label>
