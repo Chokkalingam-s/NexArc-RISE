@@ -51,7 +51,7 @@ function renderCard($card, $index, $type = "ongoing")
 
   return "
   <div class='group bg-white/40 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer' onclick='openModal($index, \"$type\")'>
-    <div class='relative h-32 overflow-hidden'>
+    <div class='relative  overflow-hidden'>
       <img src='{$bgImage}' alt='{$title}' class='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300' />
       <div class='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent'></div>
       <span class='absolute top-2 right-2 {$badgeClass} text-white px-2 py-0.5 text-xs font-semibold rounded-full shadow'>
