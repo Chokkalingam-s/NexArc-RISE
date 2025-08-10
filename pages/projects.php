@@ -41,13 +41,13 @@ function renderCard($card, $index, $type = "ongoing")
 
   // Completed-specific
   $summary = $card["summary"] ?? "";
-  $lead = $card["lead"] ?? "";
+  $participant = $card["participant"] ?? "";
   $paperTitle = $card["paper_title"] ?? "";
   $author = $card["author"] ?? "";
-  $volume = $card["volume"] ?? "";
-  $pages = $card["pages"] ?? "";
+  $details = $card["details"] ?? "";
   $journal = $card["journal"] ?? "";
   $link = $card["link"] ?? "";
+  $journalOrConferenceLabel = $card["journal_or_conference"] ?? "";
 
   return "
   <div class='group bg-white/40 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer' onclick='openModal($index, \"$type\")'>
@@ -68,8 +68,8 @@ function renderCard($card, $index, $type = "ongoing")
           ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Participant:</span> {$participant}</p>"
           : "")
       : "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Summary:</span> {$summary}</p>" .
-        (!empty($lead)
-          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Lead:</span> {$lead}</p>"
+        (!empty($participant)
+          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Participant's:</span> {$participant}</p>"
           : "") .
         (!empty($paperTitle)
           ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Paper:</span> <a href='{$link}' target='_blank' class='text-blue-600 underline'>{$paperTitle}</a></p>"
@@ -77,15 +77,17 @@ function renderCard($card, $index, $type = "ongoing")
         (!empty($author)
           ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Author(s):</span> {$author}</p>"
           : "") .
-        (!empty($volume)
-          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Volume:</span> {$volume}</p>"
-          : "") .
-        (!empty($pages)
-          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Pages:</span> {$pages}</p>"
-          : "") .
         (!empty($journal)
-          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Journal:</span> {$journal}</p>"
+          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>{$journalOrConferenceLabel}: </span> {$journal}</p>"
           : "")) .
+        (!empty($details)
+          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Details:</span> {$details}</p>"
+          : "") .
+          (!empty($link)
+          ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Paper Link:</span> <a href='{$link}' target='_blank' class='text-blue-600 underline'>{$link}</a></p>"
+          : "") .
+
+          
     "
     </div>
   </div>";
@@ -102,7 +104,7 @@ function renderMentor($m)
           <div class='min-w-0'>
             <p class='font-semibold text-slate-800 text-sm group-hover:text-indigo-700'>{$m["name"]}</p>
             <p class='text-indigo-600 text-xs font-medium mb-1'>{$m["project"]}</p>
-            <p class='text-slate-600 text-xs leading-relaxed'>{$m["note"]}</p>
+            <p class='text-slate-600 text-xs participanting-relaxed'>{$m["note"]}</p>
           </div>
         </div>
       </div>";
@@ -132,13 +134,66 @@ function renderMentor($m)
       <!-- Scrollable container -->
       <div class="max-h-[80vh] overflow-y-auto pr-2">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <?php
-          global $cards;
-          include_once "assets/data.php";
-          foreach ($cards as $index => $card) {
-            echo renderCard($card, $index, "ongoing");
-          }
-          ?>
+<?php
+// DB connection
+require_once __DIR__ . '/../config/db.php';
+
+// Fetch ongoing projects
+$cards = [];
+$stmt = $conn->prepare("SELECT * FROM Project WHERE status = 'ongoing' ORDER BY year_of_start DESC");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC); // ✅ Works in PDO
+foreach ($result as $row) {
+  $image = $row["image"] ?? "assets/default.jpg";
+    $imageURL = '../nexarc-rise/' . ltrim($image, '/'); // web URL for use in HTML
+    $cards[] = [
+        "title"        => $row["title"],
+        "bgImage"      => $imageURL,
+        "collaborator" => $row["colloborator"] ?? "",
+        "year"         => $row["year_of_start"],
+        "end_year"     => $row["year_of_end"],
+        "description"  => $row["description"],
+        "participant"  => $row["participant"],
+    ];
+}
+
+// Fetch completed projects
+$completedCards = [];
+$stmt = $conn->prepare("SELECT * FROM Project WHERE status = 'completed' ORDER BY year_of_end DESC");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC); // ✅ Works in PDO
+foreach ($result as $row) {
+  $image = $row["image"] ?? "assets/default.jpg";
+  $imageURL = '../nexarc-rise/' . ltrim($image, '/'); // web URL for use in HTML
+      $journalOrConferenceLabel = '';
+    if (isset($row["typeOfPublish"])) {
+        if (strtolower($row["typeOfPublish"]) === "journal") {
+            $journalOrConferenceLabel = "Journal";
+        } elseif (strtolower($row["typeOfPublish"]) === "conference") {
+            $journalOrConferenceLabel = "Conference";
+        }
+    }
+    $completedCards[] = [
+        "title"        => $row["title"],
+        "bgImage"      => $imageURL,
+        "collaborator" => $row["colloborator"] ?? "",
+        "year"         => $row["year_of_start"],
+        "end_year"     => $row["year_of_end"],
+        "summary"      => $row["details"], // mapping summary to details
+        "participant"         => $row["participant"], // mapping participant if needed
+        "paper_title"  => $row["paper_title"],
+        "author"       => $row["authors"],
+        "details"      => $row["details"] ?? "", // assuming details is the volume or other info
+        "journal"      => $row["nameOfPublish"],
+        "link"         => $row["link"],
+        "journal_or_conference" => $journalOrConferenceLabel,
+    ];
+}
+
+// Fetch mentors (still from collab_data.php for now)
+include_once __DIR__ . "/../assets/collab_data.php";
+?>
+
         </div>
       </div>
     </section>
