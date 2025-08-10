@@ -133,28 +133,33 @@ function renderMentor($m)
 
       <!-- Scrollable container -->
       <div class="max-h-[80vh] overflow-y-auto pr-2">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <?php
-// DB connection
 require_once __DIR__ . '/../config/db.php';
 
 // Fetch ongoing projects
 $cards = [];
 $stmt = $conn->prepare("SELECT * FROM Project WHERE status = 'ongoing' ORDER BY year_of_start DESC");
 $stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC); // ✅ Works in PDO
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 foreach ($result as $row) {
-  $image = $row["image"] ?? "assets/default.jpg";
-    $imageURL = '../nexarc-rise/' . ltrim($image, '/'); // web URL for use in HTML
-    $cards[] = [
+    $image = $row["image"] ?? "assets/default.jpg";
+    $imageURL = '../nexarc-rise/' . ltrim($image, '/');
+
+    $card = [
         "title"        => $row["title"],
         "bgImage"      => $imageURL,
         "collaborator" => $row["colloborator"] ?? "",
         "year"         => $row["year_of_start"],
-        "end_year"     => $row["year_of_end"],
+        "end_year"     => " In Progress",
         "description"  => $row["description"],
         "participant"  => $row["participant"],
     ];
+    $cards[] = $card;
+
+    // ✅ Render each ongoing project card
+    echo renderCard($card, count($cards) - 1, "ongoing");
 }
 
 // Fetch completed projects
