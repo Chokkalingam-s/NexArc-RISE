@@ -57,7 +57,7 @@ try {
 
 <div class="container py-4">
   <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-3">
-    <h4 class="mb-0">Manage Projects</h4>
+    <h4 class="mb-0 w-50">Manage Projects</h4>
     <div class="d-flex gap-2 w-100 w-sm-auto">
       <form method="get" class="d-flex gap-2">
         <select name="status" class="form-select" onchange="this.form.submit()">
@@ -89,11 +89,57 @@ if (!empty($proj['image']) && file_exists($imagePath)): ?>
                 <i class="bi bi-image" style="font-size:2rem;color:#888;"></i>
               </div>
             <?php endif; ?>
-            <div class="card-body project-body">
-              <h5 class="card-title"><?= htmlspecialchars($proj['title']) ?></h5>
-              <p class="mb-1"><small class="text-muted">Start: <?= htmlspecialchars($proj['year_of_start'] ?: '—') ?> • Status: <strong><?= htmlspecialchars($proj['status']) ?></strong></small></p>
-              <p class="card-text"><?= nl2br(htmlspecialchars(strlen($proj['description'])>200 ? substr($proj['description'],0,200).'...' : $proj['description'])) ?></p>
-            </div>
+<div class="card-body project-body">
+  <h5 class="card-title"><?= htmlspecialchars($proj['title']) ?></h5>
+  <p class="mb-1"><small class="text-muted">
+    Start: <?= htmlspecialchars($proj['year_of_start'] ?: '—') ?> 
+    <?php if (!empty($proj['year_of_end'])): ?> 
+      • End: <?= htmlspecialchars($proj['year_of_end']) ?>
+    <?php endif; ?> 
+    • Status: <strong><?= htmlspecialchars($proj['status']) ?></strong>
+  </small></p>
+
+  <?php if (!empty($proj['colloborator'])): ?>
+    <p><strong>Collaborator:</strong> <?= htmlspecialchars($proj['colloborator']) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['participant'])): ?>
+    <p><strong>Participant:</strong> <?= htmlspecialchars($proj['participant']) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['paper_title'])): ?>
+    <p><strong>Paper Title:</strong> <?= htmlspecialchars($proj['paper_title']) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['authors'])): ?>
+    <p><strong>Authors:</strong> <?= htmlspecialchars($proj['authors']) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['details'])): ?>
+    <p><strong>Details:</strong> <?= nl2br(htmlspecialchars($proj['details'])) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['typeOfPublish'])): ?>
+    <p><strong>Type of Publish:</strong> <?= htmlspecialchars($proj['typeOfPublish']) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['nameOfPublish'])): ?>
+    <p><strong>Name of Publish:</strong> <?= htmlspecialchars($proj['nameOfPublish']) ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['link'])): ?>
+    <p><strong>Link:</strong> 
+      <a href="<?= htmlspecialchars($proj['link']) ?>" target="_blank">
+        <?= htmlspecialchars($proj['link']) ?>
+      </a>
+    </p>
+  <?php endif; ?>
+
+  <?php if (!empty($proj['description'])): ?>
+    <p><?= nl2br(htmlspecialchars($proj['description'])) ?></p>
+  <?php endif; ?>
+</div>
+
             <div class="card-footer d-flex gap-2 flex-wrap">
               <button class="btn btn-sm btn-outline-primary" 
                       data-bs-toggle="modal" 
