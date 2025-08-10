@@ -1,0 +1,91 @@
+-- Ensure schema exists
+CREATE DATABASE IF NOT EXISTS nexarcrise;
+USE nexarcrise;
+
+-- Table: Form
+CREATE TABLE Form (
+    formId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    country VARCHAR(100),
+    dob DATE,
+    age INT,
+    sex ENUM('Male', 'Female', 'Other'),
+    address TEXT,
+    phone_no VARCHAR(20),
+    email VARCHAR(150),
+    degree VARCHAR(100),
+    designation VARCHAR(100),
+    identity_image VARCHAR(255),
+    howdoyougettoknow VARCHAR(255),
+    note TEXT,
+    formType VARCHAR(100)
+);
+
+-- Table: Scholorship
+CREATE TABLE Scholorship (
+    scholorshipId INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    university VARCHAR(255),
+    link VARCHAR(255),
+    description TEXT,
+    image VARCHAR(255)
+);
+
+-- Table: School
+CREATE TABLE School (
+    schoolId INT AUTO_INCREMENT PRIMARY KEY,
+    schoolname VARCHAR(255) NOT NULL,
+    place VARCHAR(255),
+    link VARCHAR(255),
+    image VARCHAR(255)
+);
+
+-- Table: Project
+CREATE TABLE Project (
+    pId INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    image VARCHAR(255),
+    colloborator VARCHAR(255),
+    description TEXT,
+    participant VARCHAR(255) DEFAULT NULL,
+    year_of_start YEAR,
+    year_of_end YEAR,
+    status ENUM('Ongoing', 'Completed'),
+    paper_title VARCHAR(255),
+    authors VARCHAR(255),
+    details TEXT,
+    typeOfPublish VARCHAR(255),
+    nameOfPublish VARCHAR(255),
+    link VARCHAR(255)
+);
+
+-- Table: ProjectGuide
+CREATE TABLE ProjectGuide (
+    pgId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    image VARCHAR(255),
+    googleScholorLink VARCHAR(255)
+);
+
+-- Table: Membership
+CREATE TABLE Membership (
+    membershipId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    country VARCHAR(100),
+    dob DATE,
+    age INT,
+    sex ENUM('Male', 'Female', 'Other'),
+    address TEXT,
+    phone_no VARCHAR(20),
+    email VARCHAR(150),
+    degree VARCHAR(100),
+    designation VARCHAR(100),
+    identity_image VARCHAR(255),
+    howdoyougettoknow VARCHAR(255),
+    note TEXT,
+    membershipStatus ENUM('Waiting', 'Accepted', 'Terminated', 'Cancelled'),
+    date_of_request DATE,
+    date_of_approved DATE,
+    date_of_termination DATE,
+    position VARCHAR(100)
+);
