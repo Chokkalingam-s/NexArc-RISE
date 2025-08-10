@@ -22,7 +22,11 @@ if (!isset($_SESSION['admin_logged_in'])) {
   </button>
   <div class="collapse navbar-collapse" id="adminNav">
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link" href="add-project.php">Add Project</a></li>
+      <li class="nav-item"><a class="nav-link" href="manage-projects.php">Projects</a></li>
+      <li class="nav-item"><a class="nav-link" href="manage-memberships.php">Memberships</a></li>
+      <li class="nav-item"><a class="nav-link" href="manage-schools.php">Schools & Scholarships</a></li>
+      <li class="nav-item"><a class="nav-link" href="manage-guide.php">Guide</a></li>
+      <li class="nav-item"><a class="nav-link" href="manage-forms.php">Forms</a></li>
       <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Logout</a></li>
     </ul>
   </div>
