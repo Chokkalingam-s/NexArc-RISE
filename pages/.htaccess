@@ -1,3 +1,7 @@
 <FilesMatch "\.php$">
   Require all denied
 </FilesMatch>
+
+<Files "membership_submit.php">
+  Require all granted
+</Files>

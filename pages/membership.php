@@ -485,11 +485,32 @@
     }
   });
 
-  document.getElementById('submit-btn').addEventListener('click', (e) =>{
+ // Actual submit handler
+  document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('Membership application submitted successfully! We will review your application and get back to you soon.');
+
+    const formData = new FormData(this);
+fetch('/nexarc-rise/pages/membership_submit.php', { 
+    method: 'POST',
+    body: formData 
+})
+
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert('✅ Membership application submitted successfully!');
+        this.reset();
+        currentStep = 1;
+        updateUI();
+      } else {
+        alert('❌ Error: ' + data.message);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('❌ Failed to submit. Please try again.');
+    });
   });
 
-  // Initialize UI
   updateUI();
 </script>
