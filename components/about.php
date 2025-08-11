@@ -86,7 +86,7 @@
         <div class="w-full h-full rounded-3xl flex items-center justify-center overflow-hidden">
           <!-- Central Logo/Icon -->
           <div class="relative z-10 text-center">
-            <img src="/../assets/icons/v3.png" alt="NexArc RISE Logo" class="size-44 mx-auto">
+            <img src="/nexarc-rise/assets/icons/v3.png" alt="NexArc RISE Logo" class="size-44 mx-auto">
             <div class="text-3xl gradient_text font-bold">NexArc RISE</div>
             <div class="text-lg text-slate-600 font-light mt-2">Building Tomorrow</div>
           </div>
