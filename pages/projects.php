@@ -94,21 +94,25 @@ function renderCard($card, $index, $type = "ongoing")
 }
 
 // Mentor rendering function
+// Mentor rendering function
 function renderMentor($m)
 {
+  $image = !empty($m["image"]) ? $m["image"] : "assets/default-mentor.jpg";
+  $imageURL = '../nexarc-rise/' . ltrim($image, '/');
+
   return "
-      <div class='rounded-lg bg-white/40 hover:shadow-lg transition-all duration-300 p-4 relative group'>
-        <div class='w-1.5 h-16 rounded-md absolute left-0 top-1/2 -translate-y-1/2 grad_primary -translate-x-1'></div>
-        <div class='flex gap-4 items-start'>
-          <div class='size-16 rounded-full grad_secondary flex-shrink-0 shadow-inner'></div>
-          <div class='min-w-0'>
-            <p class='font-semibold text-slate-800 text-sm group-hover:text-indigo-700'>{$m["name"]}</p>
-            <p class='text-indigo-600 text-xs font-medium mb-1'>{$m["project"]}</p>
-            <p class='text-slate-600 text-xs participanting-relaxed'>{$m["note"]}</p>
-          </div>
+    <div class='rounded-lg bg-white/40 hover:shadow-lg transition-all duration-300 p-4 relative group'>
+      <div class='w-1.5 h-16 rounded-md absolute left-0 top-1/2 -translate-y-1/2 grad_primary -translate-x-1'></div>
+      <div class='flex gap-4 items-start'>
+        <img src='{$imageURL}' alt='{$m["name"]}' class='size-16 rounded-full object-cover flex-shrink-0 shadow-inner'>
+        <div class='min-w-0'>
+          <p class='font-semibold text-slate-800 text-sm group-hover:text-indigo-700'>{$m["name"]}</p>
+          <a href='{$m["googleScholorLink"]}' target='_blank' class='text-indigo-600 text-xs font-medium mb-1'>Google Scholar</a>
         </div>
-      </div>";
+      </div>
+    </div>";
 }
+
 ?>
 
 <main class="pt-10 md:pt-0 grid grid-cols-[68%_2%_30%] h-screen overflow-hidden">
@@ -227,15 +231,20 @@ include_once __DIR__ . "/../assets/collab_data.php";
   <!-- Right Mentors -->
   <div class="p-2 w-80 flex flex-col sticky top-10 self-start z-20 h-[calc(100vh-50px)]">
     <?php
-    global $mentors;
-    include_once __DIR__ . "/../assets/collab_data.php";
+
     ?>
     <h2 class="gradient_text">Project Mentors</h2>
     <div class="flex-1 relative rounded-lg overflow-hidden">
       <div id="mentor-list" class="h-full overflow-y-auto space-y-2 p-2">
-        <?php foreach ($mentors as $m) {
-          echo renderMentor($m);
-        } ?>
+        <?php
+            $stmt = $conn->prepare("SELECT name, googleScholorLink, image FROM projectguide ORDER BY name ASC");
+$stmt->execute();
+$mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($mentors as $m) {
+  echo renderMentor($m);
+}
+ ?>
       </div>
       <div id="scroll-hint" class="absolute bottom-0 w-full text-center text-sm py-1 bg-white/60 backdrop-blur-sm">
         Scroll for more mentors ↓
