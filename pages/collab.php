@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../config/db.php'; // $conn is PDO
 
+include_once __DIR__ . "/../assets/collab_data.php";
+
 // Fetch Scholarships
 $stmt = $conn->query("SELECT * FROM Scholorship ORDER BY scholorshipId DESC");
 $scholarships = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -75,6 +77,7 @@ $schools = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="grid sm:grid-cols-2 gap-6">
           <?php
           global $students;
+
           foreach ($students as $student): ?>
             <div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md">
               <div class="size-16 px-4 rounded-full <?= $student[
