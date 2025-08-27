@@ -1,8 +1,192 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<script>
+function validateStep(step) {
+  const stepEl = document.getElementById(`step-${step}`);
+  const inputs = stepEl.querySelectorAll("[required]");
+  let valid = true;
+
+  inputs.forEach(input => {
+    if (input.type === "radio") {
+      const group = stepEl.querySelectorAll(`input[name="${input.name}"]`);
+      const anyChecked = Array.from(group).some(r => r.checked);
+      if (!anyChecked) valid = false;
+    } else if (!input.value.trim()) {
+      valid = false;
+      input.classList.add("border-red-500");
+    } else {
+      input.classList.remove("border-red-500");
+    }
+  });
+
+  if (!valid) {
+    alert("⚠️ Please fill in all required fields before continuing.");
+  }
+
+  return valid;
+}
+
+document.getElementById('next-btn').addEventListener('click', () => {
+  if (currentStep < totalSteps && validateStep(currentStep)) {
+    currentStep++;
+    updateUI();
+  }
+});
+
+  const steps = ['Personal Information', 'Education Details', 'Contact Information', 'Final Details'];
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  // Image preview functionality
+  document.getElementById('file-input').addEventListener('change',
+  function(e) {
+    const file = e.target.files[0];
+    const previewContainer = document.getElementById('image-preview-container');
+    const preview = document.getElementById('image-preview');
+
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        previewContainer.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    } else {
+      previewContainer.classList.add('hidden');
+    }
+  });
+
+  function updateUI() {
+    // Update progress bar - starts from 0, fills as you progress
+    const progressWidth = currentStep === 1 ? 0 : ((currentStep - 1) / (totalSteps - 1)) * 100;
+    document.getElementById('progress-bar').style.width = `${
+      progressWidth
+    }%`;
+
+    // Update title and description
+    document.getElementById('step-title').textContent = steps[currentStep - 1];
+    document.getElementById('step-description').textContent = `Step ${
+      currentStep
+    } of ${
+      totalSteps
+    } - Please fill in all required fields`;
+
+    // Show/hide form steps
+    document.querySelectorAll('.form-step').forEach((step, index) =>{
+      step.classList.toggle('hidden', index !== currentStep - 1);
+    });
+
+    // Update stepper UI
+    document.querySelectorAll('.step-item').forEach((item, index) =>{
+      const stepNum = index + 1;
+      const circle = item.querySelector('.step-circle');
+      const label = item.querySelector('p:first-child');
+      const subLabel = item.querySelector('p:last-child');
+      const connector = item.querySelector('.step-connector');
+
+      if (stepNum < currentStep) {
+        // Completed
+        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_primary shadow-lg';
+        circle.innerHTML = '<i class="fas fa-check text-sm"></i>';
+        label.className = 'text-sm font-semibold text-blue-800';
+        subLabel.className = 'text-xs text-slate-500';
+        if (connector) connector.className = 'w-0.5 h-6 grad_primary step-connector';
+      } else if (stepNum === currentStep) {
+        // Active - ensure white icons for contrast
+        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_secondary shadow-lg transform scale-110';
+        const iconClass = circle.querySelector('i').className.replace('text-sm', 'text-sm text-white');
+        circle.querySelector('i').className = iconClass;
+        label.className = 'text-sm font-semibold text-amber-600';
+        subLabel.className = 'text-xs text-slate-500';
+        if (connector) connector.className = 'w-0.5 h-6 bg-amber-500 step-connector';
+      } else {
+        // Pending
+        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg';
+        label.className = 'text-sm font-semibold text-slate-600';
+        subLabel.className = 'text-xs text-slate-400';
+        if (connector) connector.className = 'w-0.5 h-6 bg-slate-300 step-connector';
+      }
+    });
+
+    // Update buttons visibility
+    const backBtn = document.getElementById('back-btn');
+    const backSpacer = document.getElementById('back-spacer');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Back button: visible from step 2 onwards
+    if (currentStep === 1) {
+      backBtn.classList.add('hidden');
+      backSpacer.classList.remove('hidden');
+    } else {
+      backBtn.classList.remove('hidden');
+      backSpacer.classList.add('hidden');
+    }
+
+    // Next button: visible until last step
+    if (currentStep === totalSteps) {
+      nextBtn.classList.add('hidden');
+    } else {
+      nextBtn.classList.remove('hidden');
+    }
+
+    // Submit button: only visible on last step
+    if (currentStep === totalSteps) {
+      submitBtn.classList.remove('hidden');
+    } else {
+      submitBtn.classList.add('hidden');
+    }
+  }
+
+  document.getElementById('next-btn').addEventListener('click', () =>{
+    if (currentStep < totalSteps) {
+      currentStep++;
+      updateUI();
+    }
+  });
+
+  document.getElementById('back-btn').addEventListener('click', () =>{
+    if (currentStep > 1) {
+      currentStep--;
+      updateUI();
+    }
+  });
+
+ // Actual submit handler
+  document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+  fetch('/nexarc-rise/pages/membership_submit.php', {
+    method: 'POST',
+    body: formData
+  })
+
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert('✅ Membership application submitted successfully!');
+        this.reset();
+        currentStep = 1;
+        updateUI();
+      } else {
+        alert('❌ Error: ' + data.message);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('❌ Failed to submit. Please try again.');
+    });
+  });
+
+  updateUI();
+</script>
+
 <section class="max-w-6xl mx-auto py-10 px-4">
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
     <!-- Left Panel - Stepper -->
-    <div class="lg:col-span-1"> 
+    <div class="lg:col-span-1">
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 gradient_text relative w-fit mx-auto">
         Become a Member
         <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-14 h-1 grad_primary rounded-full">
@@ -365,152 +549,3 @@
     </div>
   </div>
 </section>
-<script>
-  const steps = ['Personal Information', 'Education Details', 'Contact Information', 'Final Details'];
-  let currentStep = 1;
-  const totalSteps = 4;
-
-  // Image preview functionality
-  document.getElementById('file-input').addEventListener('change',
-  function(e) {
-    const file = e.target.files[0];
-    const previewContainer = document.getElementById('image-preview-container');
-    const preview = document.getElementById('image-preview');
-
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        preview.src = e.target.result;
-        previewContainer.classList.remove('hidden');
-      };
-      reader.readAsDataURL(file);
-    } else {
-      previewContainer.classList.add('hidden');
-    }
-  });
-
-  function updateUI() {
-    // Update progress bar - starts from 0, fills as you progress
-    const progressWidth = currentStep === 1 ? 0 : ((currentStep - 1) / (totalSteps - 1)) * 100;
-    document.getElementById('progress-bar').style.width = `${
-      progressWidth
-    }%`;
-
-    // Update title and description
-    document.getElementById('step-title').textContent = steps[currentStep - 1];
-    document.getElementById('step-description').textContent = `Step ${
-      currentStep
-    } of ${
-      totalSteps
-    } - Please fill in all required fields`;
-
-    // Show/hide form steps
-    document.querySelectorAll('.form-step').forEach((step, index) =>{
-      step.classList.toggle('hidden', index !== currentStep - 1);
-    });
-
-    // Update stepper UI
-    document.querySelectorAll('.step-item').forEach((item, index) =>{
-      const stepNum = index + 1;
-      const circle = item.querySelector('.step-circle');
-      const label = item.querySelector('p:first-child');
-      const subLabel = item.querySelector('p:last-child');
-      const connector = item.querySelector('.step-connector');
-
-      if (stepNum < currentStep) {
-        // Completed
-        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_primary shadow-lg';
-        circle.innerHTML = '<i class="fas fa-check text-sm"></i>';
-        label.className = 'text-sm font-semibold text-blue-800';
-        subLabel.className = 'text-xs text-slate-500';
-        if (connector) connector.className = 'w-0.5 h-6 grad_primary step-connector';
-      } else if (stepNum === currentStep) {
-        // Active - ensure white icons for contrast
-        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_secondary shadow-lg transform scale-110';
-        const iconClass = circle.querySelector('i').className.replace('text-sm', 'text-sm text-white');
-        circle.querySelector('i').className = iconClass;
-        label.className = 'text-sm font-semibold text-amber-600';
-        subLabel.className = 'text-xs text-slate-500';
-        if (connector) connector.className = 'w-0.5 h-6 bg-amber-500 step-connector';
-      } else {
-        // Pending
-        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg';
-        label.className = 'text-sm font-semibold text-slate-600';
-        subLabel.className = 'text-xs text-slate-400';
-        if (connector) connector.className = 'w-0.5 h-6 bg-slate-300 step-connector';
-      }
-    });
-
-    // Update buttons visibility
-    const backBtn = document.getElementById('back-btn');
-    const backSpacer = document.getElementById('back-spacer');
-    const nextBtn = document.getElementById('next-btn');
-    const submitBtn = document.getElementById('submit-btn');
-
-    // Back button: visible from step 2 onwards
-    if (currentStep === 1) {
-      backBtn.classList.add('hidden');
-      backSpacer.classList.remove('hidden');
-    } else {
-      backBtn.classList.remove('hidden');
-      backSpacer.classList.add('hidden');
-    }
-
-    // Next button: visible until last step
-    if (currentStep === totalSteps) {
-      nextBtn.classList.add('hidden');
-    } else {
-      nextBtn.classList.remove('hidden');
-    }
-
-    // Submit button: only visible on last step
-    if (currentStep === totalSteps) {
-      submitBtn.classList.remove('hidden');
-    } else {
-      submitBtn.classList.add('hidden');
-    }
-  }
-
-  document.getElementById('next-btn').addEventListener('click', () =>{
-    if (currentStep < totalSteps) {
-      currentStep++;
-      updateUI();
-    }
-  });
-
-  document.getElementById('back-btn').addEventListener('click', () =>{
-    if (currentStep > 1) {
-      currentStep--;
-      updateUI();
-    }
-  });
-
- // Actual submit handler
-  document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-fetch('/nexarc-rise/pages/membership_submit.php', { 
-    method: 'POST',
-    body: formData 
-})
-
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert('✅ Membership application submitted successfully!');
-        this.reset();
-        currentStep = 1;
-        updateUI();
-      } else {
-        alert('❌ Error: ' + data.message);
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('❌ Failed to submit. Please try again.');
-    });
-  });
-
-  updateUI();
-</script>
