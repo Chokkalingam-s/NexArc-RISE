@@ -89,3 +89,6 @@ CREATE TABLE Membership (
     date_of_termination DATE,
     position VARCHAR(100)
 );
+
+ALTER TABLE Form ADD COLUMN formStatus ENUM('Unread','Read','Answered','Spam') DEFAULT 'Unread';
+
