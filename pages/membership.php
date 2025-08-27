@@ -1,187 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-<script>
-function validateStep(step) {
-  const stepEl = document.getElementById(`step-${step}`);
-  const inputs = stepEl.querySelectorAll("[required]");
-  let valid = true;
-
-  inputs.forEach(input => {
-    if (input.type === "radio") {
-      const group = stepEl.querySelectorAll(`input[name="${input.name}"]`);
-      const anyChecked = Array.from(group).some(r => r.checked);
-      if (!anyChecked) valid = false;
-    } else if (!input.value.trim()) {
-      valid = false;
-      input.classList.add("border-red-500");
-    } else {
-      input.classList.remove("border-red-500");
-    }
-  });
-
-  if (!valid) {
-    alert("⚠️ Please fill in all required fields before continuing.");
-  }
-
-  return valid;
-}
-
-document.getElementById('next-btn').addEventListener('click', () => {
-  if (currentStep < totalSteps && validateStep(currentStep)) {
-    currentStep++;
-    updateUI();
-  }
-});
-
-  const steps = ['Personal Information', 'Education Details', 'Contact Information', 'Final Details'];
-  let currentStep = 1;
-  const totalSteps = 4;
-
-  // Image preview functionality
-  document.getElementById('file-input').addEventListener('change',
-  function(e) {
-    const file = e.target.files[0];
-    const previewContainer = document.getElementById('image-preview-container');
-    const preview = document.getElementById('image-preview');
-
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        preview.src = e.target.result;
-        previewContainer.classList.remove('hidden');
-      };
-      reader.readAsDataURL(file);
-    } else {
-      previewContainer.classList.add('hidden');
-    }
-  });
-
-  function updateUI() {
-    // Update progress bar - starts from 0, fills as you progress
-    const progressWidth = currentStep === 1 ? 0 : ((currentStep - 1) / (totalSteps - 1)) * 100;
-    document.getElementById('progress-bar').style.width = `${
-      progressWidth
-    }%`;
-
-    // Update title and description
-    document.getElementById('step-title').textContent = steps[currentStep - 1];
-    document.getElementById('step-description').textContent = `Step ${
-      currentStep
-    } of ${
-      totalSteps
-    } - Please fill in all required fields`;
-
-    // Show/hide form steps
-    document.querySelectorAll('.form-step').forEach((step, index) =>{
-      step.classList.toggle('hidden', index !== currentStep - 1);
-    });
-
-    // Update stepper UI
-    document.querySelectorAll('.step-item').forEach((item, index) =>{
-      const stepNum = index + 1;
-      const circle = item.querySelector('.step-circle');
-      const label = item.querySelector('p:first-child');
-      const subLabel = item.querySelector('p:last-child');
-      const connector = item.querySelector('.step-connector');
-
-      if (stepNum < currentStep) {
-        // Completed
-        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_primary shadow-lg';
-        circle.innerHTML = '<i class="fas fa-check text-sm"></i>';
-        label.className = 'text-sm font-semibold text-blue-800';
-        subLabel.className = 'text-xs text-slate-500';
-        if (connector) connector.className = 'w-0.5 h-6 grad_primary step-connector';
-      } else if (stepNum === currentStep) {
-        // Active - ensure white icons for contrast
-        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white grad_secondary shadow-lg transform scale-110';
-        const iconClass = circle.querySelector('i').className.replace('text-sm', 'text-sm text-white');
-        circle.querySelector('i').className = iconClass;
-        label.className = 'text-sm font-semibold text-amber-600';
-        subLabel.className = 'text-xs text-slate-500';
-        if (connector) connector.className = 'w-0.5 h-6 bg-amber-500 step-connector';
-      } else {
-        // Pending
-        circle.className = 'step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg';
-        label.className = 'text-sm font-semibold text-slate-600';
-        subLabel.className = 'text-xs text-slate-400';
-        if (connector) connector.className = 'w-0.5 h-6 bg-slate-300 step-connector';
-      }
-    });
-
-    // Update buttons visibility
-    const backBtn = document.getElementById('back-btn');
-    const backSpacer = document.getElementById('back-spacer');
-    const nextBtn = document.getElementById('next-btn');
-    const submitBtn = document.getElementById('submit-btn');
-
-    // Back button: visible from step 2 onwards
-    if (currentStep === 1) {
-      backBtn.classList.add('hidden');
-      backSpacer.classList.remove('hidden');
-    } else {
-      backBtn.classList.remove('hidden');
-      backSpacer.classList.add('hidden');
-    }
-
-    // Next button: visible until last step
-    if (currentStep === totalSteps) {
-      nextBtn.classList.add('hidden');
-    } else {
-      nextBtn.classList.remove('hidden');
-    }
-
-    // Submit button: only visible on last step
-    if (currentStep === totalSteps) {
-      submitBtn.classList.remove('hidden');
-    } else {
-      submitBtn.classList.add('hidden');
-    }
-  }
-
-  document.getElementById('next-btn').addEventListener('click', () =>{
-    if (currentStep < totalSteps) {
-      currentStep++;
-      updateUI();
-    }
-  });
-
-  document.getElementById('back-btn').addEventListener('click', () =>{
-    if (currentStep > 1) {
-      currentStep--;
-      updateUI();
-    }
-  });
-
- // Actual submit handler
-  document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-  fetch('/nexarc-rise/pages/membership_submit.php', {
-    method: 'POST',
-    body: formData
-  })
-
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert('✅ Membership application submitted successfully!');
-        this.reset();
-        currentStep = 1;
-        updateUI();
-      } else {
-        alert('❌ Error: ' + data.message);
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('❌ Failed to submit. Please try again.');
-    });
-  });
-
-  updateUI();
-</script>
+<?php include_once __DIR__ . "/helpers.php"; ?>
 
 <section class="max-w-6xl mx-auto py-10 px-4">
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
@@ -197,8 +14,7 @@ document.getElementById('next-btn').addEventListener('click', () => {
           <div class="w-0.5 h-6 bg-slate-300 step-connector hidden">
           </div>
           <div class="step-circle size-12 rounded-full flex items-center justify-center text-white shadow-lg">
-            <i class="fas fa-user text-sm">
-            </i>
+            <?= inline_svg("assets/icons/user-solid-full.svg") ?>
           </div>
           <div>
             <p class="text-sm font-semibold text-blue-700">
@@ -213,8 +29,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
           <div class="w-0.5 h-6 bg-slate-300 step-connector">
           </div>
           <div class="step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
-            <i class="fas fa-graduation-cap text-sm">
-            </i>
+            <?= inline_svg(
+              "assets/icons/graduation-cap-solid-full.svg",
+            ) ?>
           </div>
           <div>
             <p class="text-sm font-semibold text-slate-600">
@@ -229,8 +46,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
           <div class="w-0.5 h-6 bg-slate-300 step-connector">
           </div>
           <div class="step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
-            <i class="fas fa-address-book text-sm">
-            </i>
+            <?= inline_svg(
+              "assets/icons/address-book-solid-full.svg",
+            ) ?>
           </div>
           <div>
             <p class="text-sm font-semibold text-slate-600">
@@ -245,8 +63,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
           <div class="w-0.5 h-6 bg-slate-300 step-connector">
           </div>
           <div class="step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg">
-            <i class="fas fa-check-circle text-sm">
-            </i>
+            <?= inline_svg(
+              "assets/icons/circle-check-solid-full.svg",
+            ) ?>
           </div>
           <div>
             <p class="text-sm font-semibold text-slate-600">
@@ -285,8 +104,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 <div class="grid md:grid-cols-2 gap-6">
                   <label class="block">
                     <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                      <i class="fas fa-user text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/user-solid-full.svg",
+                      ) ?>
                       Full Name
                     </span>
                     <input type="text" name="full_name" placeholder="Enter your full name"
@@ -295,8 +115,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                   </label>
                   <label class="block">
                     <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                      <i class="fas fa-calendar text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/calendar-solid-full.svg",
+                      ) ?>
                       Date of Birth
                     </span>
                     <input type="date" name="dob" class="w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all"
@@ -306,8 +127,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 <div class="grid md:grid-cols-2 gap-6">
                   <label class="block">
                     <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                      <i class="fas fa-globe text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/globe-solid-full.svg",
+                      ) ?>
                       Country
                     </span>
                     <input type="text" name="country" placeholder="Enter your country" class="w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all"
@@ -315,8 +137,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                   </label>
                   <fieldset class="space-y-3">
                     <legend class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                      <i class="fas fa-venus-mars text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/venus-mars-solid-full.svg",
+                      ) ?>
                       Gender
                     </legend>
                     <div class="flex gap-4">
@@ -348,8 +171,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
               <div class="space-y-6">
                 <label class="block">
                   <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                    <i class="fas fa-graduation-cap text-blue-500">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/graduation-cap-solid-full.svg",
+                    ) ?>
                     Highest Education Level
                   </span>
                   <select name="degree" class="w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all">
@@ -378,8 +202,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 </label>
                 <label class="block">
                   <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                    <i class="fas fa-school text-blue-500">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/school-solid-full.svg",
+                    ) ?>
                     Institution Name
                   </span>
                   <input type="text" name="institution" placeholder="Enter your school/university name"
@@ -388,8 +213,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 </label>
                 <label class="block">
                   <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                    <i class="fas fa-book text-blue-500">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/book-solid-full.svg",
+                    ) ?>
                     Field of Study
                   </span>
                   <input type="text" name="field_of_study" placeholder="Enter your major/field of study"
@@ -403,8 +229,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
               <div class="space-y-6">
                 <label class="block">
                   <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                    <i class="fas fa-home text-blue-500">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/house-solid-full.svg",
+                    ) ?>
                     Address
                   </span>
                   <textarea name="address" rows="3" placeholder="Enter your complete address"
@@ -414,8 +241,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 <div class="grid md:grid-cols-2 gap-6">
                   <label class="block">
                     <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                      <i class="fas fa-phone text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/phone-solid-full.svg",
+                      ) ?>
                       Phone Number
                     </span>
                     <input type="tel" name="phone" placeholder="+1 (555) 123-4567" class="w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all"
@@ -423,8 +251,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                   </label>
                   <label class="block">
                     <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                      <i class="fas fa-envelope text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/envelope-solid-full.svg",
+                      ) ?>
                       Email Address
                     </span>
                     <input type="email" name="email" placeholder="your.email@example.com"
@@ -435,8 +264,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 <label class="grid grid-cols-[70%_30%]">
                   <div>
                     <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                      <i class="fas fa-id-card text-blue-500">
-                      </i>
+                      <?= inline_svg(
+                        "assets/icons/address-card-solid-full.svg",
+                      ) ?>
                       ID Document Upload
                     </span>
                     <input type="file" name="id_document" accept="image/*" id="file-input"
@@ -458,8 +288,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
               <div class="space-y-2">
                 <fieldset class="space-y-2">
                   <legend class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                    <i class="fas fa-bullhorn text-blue-500">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/bullhorn-solid-full.svg",
+                    ) ?>
                     How did you hear about us?
                   </legend>
                   <div class="grid grid-cols-2 gap-2">
@@ -503,8 +334,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 </fieldset>
                 <label class="block">
                   <span class="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
-                    <i class="fas fa-sticky-note text-blue-500">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/note-sticky-solid-full.svg",
+                    ) ?>
                     Additional Notes (Optional)
                   </span>
                   <textarea name="notes" rows="4" placeholder="Any additional information you'd like to share..."
@@ -513,8 +345,9 @@ document.getElementById('next-btn').addEventListener('click', () => {
                 </label>
                 <div class="bg-green-50 border border-green-200 rounded-xl p-4">
                   <div class="flex items-center gap-2 text-green-800 font-semibold mb-2">
-                    <i class="fas fa-check-circle">
-                    </i>
+                    <?= inline_svg(
+                      "assets/icons/circle-check-solid-full.svg",
+                    ) ?>
                     Ready to Submit
                   </div>
                   <p class="text-green-700 text-sm">
@@ -526,20 +359,23 @@ document.getElementById('next-btn').addEventListener('click', () => {
             <!-- Navigation Buttons -->
             <div class="flex justify-between items-center pt-8 mt-8 border-t border-slate-200">
               <button type="button" id="back-btn" class="hidden inline-flex items-center gap-2 px-6 py-3 text-blue-600 font-semibold hover:text-blue-800 transition-colors">
-                <i class="fas fa-arrow-left">
-                </i>
+                <?= inline_svg(
+                  "assets/icons/arrow-left-solid-full.svg",
+                ) ?>
                 Back
               </button>
               <div id="back-spacer">
               </div>
               <button type="button" id="next-btn" class="inline-flex items-center gap-2 grad_primary text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-semibold">
                 Next
-                <i class="fas fa-arrow-right">
-                </i>
+                <?= inline_svg(
+                  "assets/icons/arrow-right-solid-full.svg",
+                ) ?>
               </button>
               <button type="submit" id="submit-btn" class="hidden inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-xl shadow-lg hover:from-green-700 hover:to-green-800 hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-semibold">
-                <i class="fas fa-paper-plane">
-                </i>
+                <?= inline_svg(
+                  "assets/icons/paper-plane-solid-full.svg",
+                ) ?>
                 Submit Application
               </button>
             </div>
@@ -549,3 +385,15 @@ document.getElementById('next-btn').addEventListener('click', () => {
     </div>
   </div>
 </section>
+<script>const steps=['Personal Information','Education Details','Contact Information','Final Details'];let currentStep=1;const totalSteps=4;document.getElementById('file-input').addEventListener('change',function(e){const file=e.target.files[0];const previewContainer=document.getElementById('image-preview-container');const preview=document.getElementById('image-preview');if(file&&file.type.startsWith('image/')){const reader=new FileReader();reader.onload=function(e){preview.src=e.target.result;previewContainer.classList.remove('hidden')};reader.readAsDataURL(file)}else{previewContainer.classList.add('hidden')}});function updateUI(){const progressWidth=currentStep===1?0:((currentStep-1)/(totalSteps-1))*100;document.getElementById('progress-bar').style.width=`${
+      progressWidth
+    }%`;document.getElementById('step-title').textContent=steps[currentStep-1];document.getElementById('step-description').textContent=`Step ${
+      currentStep
+    } of ${
+      totalSteps
+  } - Please fill in all required fields`;document.querySelectorAll('.form-step').forEach((step,index)=>{step.classList.toggle('hidden',index!==currentStep-1)});document.querySelectorAll('.step-item').forEach((item,index)=>{const stepNum=index+1;const circle=item.querySelector('.step-circle');const label=item.querySelector('p:first-child');const subLabel=item.querySelector('p:last-child');const connector=item.querySelector('.step-connector');if(stepNum<currentStep){circle.className='step-circle size-12 rounded-full flex items-center justify-center text-white grad_primary shadow-lg';circle.innerHTML='<?= inline_svg(
+    "assets/icons/circle-check-solid-full.svg",
+  ) ?>';label.className='text-sm font-semibold text-blue-800';subLabel.className='text-xs text-slate-500';if(connector)connector.className='w-0.5 h-6 grad_primary step-connector'}else if(stepNum===currentStep){circle.className='step-circle size-12 rounded-full flex items-center justify-center text-white grad_secondary shadow-lg transform scale-110';const iconClass=circle.querySelector('i').className.replace('text-sm','text-sm text-white');circle.querySelector('i').className=iconClass;label.className='text-sm font-semibold text-amber-600';subLabel.className='text-xs text-slate-500';if(connector)connector.className='w-0.5 h-6 bg-amber-500 step-connector'}else{circle.className='step-circle size-12 rounded-full flex items-center justify-center text-white bg-slate-400 shadow-lg';label.className='text-sm font-semibold text-slate-600';subLabel.className='text-xs text-slate-400';if(connector)connector.className='w-0.5 h-6 bg-slate-300 step-connector'}});const backBtn=document.getElementById('back-btn');const backSpacer=document.getElementById('back-spacer');const nextBtn=document.getElementById('next-btn');const submitBtn=document.getElementById('submit-btn');if(currentStep===1){backBtn.classList.add('hidden');backSpacer.classList.remove('hidden')}else{backBtn.classList.remove('hidden');backSpacer.classList.add('hidden')}
+  if(currentStep===totalSteps){nextBtn.classList.add('hidden')}else{nextBtn.classList.remove('hidden')}
+  if(currentStep===totalSteps){submitBtn.classList.remove('hidden')}else{submitBtn.classList.add('hidden')}}
+  document.getElementById('next-btn').addEventListener('click',()=>{if(currentStep<totalSteps){currentStep++;updateUI()}});document.getElementById('back-btn').addEventListener('click',()=>{if(currentStep>1){currentStep--;updateUI()}});document.querySelector('form').addEventListener('submit',function(e){e.preventDefault();const formData=new FormData(this);fetch('/nexarc-rise/pages/membership_submit.php',{method:'POST',body:formData}).then(res=>res.json()).then(data=>{if(data.success){alert('✅ Membership application submitted successfully!');this.reset();currentStep=1;updateUI()}else{alert('❌ Error: '+data.message)}}).catch(err=>{console.error(err);alert('❌ Failed to submit. Please try again.')})});updateUI();</script>

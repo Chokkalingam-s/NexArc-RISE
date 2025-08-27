@@ -1,49 +1,6 @@
-<style>
-  .glow {
-    box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
-  }
+<style>.slide-in{animation:slideIn 1s ease-out}@keyframes slideIn{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}</style>
+<?php include_once __DIR__ . "/helpers.php"; ?>
 
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .slide-in {
-    animation: slideIn 1s ease-out;
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .tag-hover {
-    transition: all 0.3s ease;
-  }
-
-  .tag-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
-  }
-
-  .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .text-shadow {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  }
-  .hero-pattern {
-    background-image: radial-gradient(circle at 25px 25px, rgba(102, 126, 234, 0.1) 2px, transparent 2px);
-    background-size: 50px 50px;
-  }
-</style>
 <section class="min-h-[70vh] c px-4 relative overflow-hidden">
   <div class="max-w-7xl mx-auto grid md:grid-cols-[60%_40%] items-center gap-x-20 relative z-10">
     <!-- Text Panel -->
@@ -94,13 +51,25 @@
 
         <!-- Floating Tags -->
         <div class="absolute -top-4 -right-4 about_us_tags_base gradient_text" style="animation-delay: 0s">
-          <span>🌍</span> Global Collaboration
+          <span>
+            <?= inline_svg(
+              "assets/icons/globe-solid-full.svg",
+            ) ?>
+          </span> Global Collaboration
         </div>
         <div class="absolute -bottom-4 -left-4 about_us_tags_base gradient_text" style="animation-delay: 1s">
-          <span>💡</span> Innovation Focus
+          <span>
+            <?= inline_svg(
+              "assets/icons/lightbulb-solid-full.svg",
+            ) ?>
+          </span> Innovation Focus
         </div>
         <div class="absolute bottom-6 -right-24 about_us_tags_base gradient_text" style="animation-delay: 2s">
-          <span>🎯</span> Expert Mentorship
+          <span>
+            <?= inline_svg(
+              "assets/icons/bullseye-solid-full.svg",
+            ) ?>
+          </span> Expert Mentorship
         </div>
       </div>
     </div>
