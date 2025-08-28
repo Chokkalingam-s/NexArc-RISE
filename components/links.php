@@ -1,14 +1,5 @@
-<?php function inline_svg($path)
-{
-  if (file_exists($path)) {
-    return str_replace(
-      "<svg",
-      '<svg class="size-5 fill-current inline-block mr-2"',
-      file_get_contents($path),
-    );
-  }
-  return "<!-- Missing icon: $path -->";
-} ?>
+<?php include_once __DIR__ . "/helpers.php"; ?>
+
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto p-4 rounded-xl">
   <!-- Site Info Column -->
   <div class="space-y-4">

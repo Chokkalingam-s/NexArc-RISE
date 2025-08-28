@@ -10,7 +10,7 @@ $conferences = array_filter($projects, fn($p) => strtolower($p['typeOfPublish'])
 $journals = array_filter($projects, fn($p) => strtolower($p['typeOfPublish']) === 'journal');
 ?>
 
-<section class="grid grid-cols-2 gap-4">
+<section class="grid grid-cols-2 gap-4 min-h-screen">
   <!-- Conferences Section -->
   <div class="space-y-6 relative z-10">
     <div class="flex items-center gap-4 mb-8">
