@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "nexarcrise";
 $username = "root";
-$password = "";
+$password = "mysql";
 
 try {
   $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
