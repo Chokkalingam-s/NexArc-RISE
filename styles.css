@@ -261,3 +261,9 @@ footer {
 .gradient-text {
   @apply bg-gradient-to-br from-gray-200 to-blue-200 bg-clip-text text-transparent;
 }
+
+.image-preview {
+  @apply rounded-xl border-2 border-blue-600 object-cover;
+  width: 100px;
+  height: 80px;
+}
