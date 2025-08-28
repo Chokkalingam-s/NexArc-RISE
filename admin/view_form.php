@@ -14,9 +14,12 @@ if ($form):
   <p><strong>Sex:</strong> <?= $form['sex'] ?></p>
   <p><strong>Address:</strong> <?= $form['address'] ?></p>
   <p><strong>Phone:</strong> <?= $form['phone_no'] ?></p>
+  <p><strong>Email:</strong> <?= $form['email'] ?></p>
   <p><strong>Degree:</strong> <?= $form['degree'] ?></p>
   <p><strong>Form Type:</strong> <?= $form['formType'] ?></p>
-  <p><strong>Note:</strong> <?= $form['note'] ?></p>
+  <p><strong>Message:</strong> <?= $form['note'] ?></p>
+  <p><strong>How did they got to know:</strong> <?= $form['howdoyougettoknow'] ?></p>
+  
 
   <div class="btn-group mt-3">
     <button class="btn btn-sm btn-outline-primary" onclick="updateStatus(<?= $form['formId'] ?>,'Answered')">Mark as Answered</button>
