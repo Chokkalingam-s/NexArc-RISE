@@ -23,29 +23,6 @@ $files = glob("{$folder}*.{jpg,jpeg,png,webp}", GLOB_BRACE);
             <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-transparent to-indigo-900/40"></div>
           </div>
         <?php endforeach; ?>
-
-        <!-- Navigation Arrows -->
-        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 opacity-0 group-hover:opacity-100">
-          <svg class="w-6 h-6" fill="none" stroke="cColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-        </button>
-
-        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 opacity-0 group-hover:opacity-100">
-          <svg class="w-6 h-6" fill="none" stroke="cColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-
-        <!-- Dots Indicator -->
-        <div id="dots" class="flex justify-center gap-3 absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
-          <?php foreach ($files as $i => $_): ?>
-            <button onclick="goToSlide(<?= $i ?>)" class= "w-3 md:h-3 h-1 rounded-full transition-all duration-300 <?php echo $i ===
-0
-  ? "bg-white scale-125"
-  : "bg-white/50 hover:bg-white/75"; ?>"></button>
-          <?php endforeach; ?>
-        </div>
       </div>
     <?php endif; ?>
   </div>

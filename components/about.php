@@ -64,7 +64,7 @@
             ) ?>
           </span> Innovation Focus
         </div>
-        <div class="absolute bottom-6 -right-24 about_us_tags_base gradient_text" style="animation-delay: 2s">
+        <div class="absolute bottom-5 -right-24 about_us_tags_base gradient_text" style="animation-delay: 2s">
           <span>
             <?= inline_svg(
               "assets/icons/bullseye-solid-full.svg",
