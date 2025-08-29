@@ -7,7 +7,7 @@
     <div class="space-y-8 slide-in">
       <!-- Main Headline -->
       <div class="space-y-4">
-        <h2 class="text-4xl md:text-5xl head font-bold leading-tight gradient_text">
+        <h2 class="text-2xl md:text-5xl head font-bold leading-tight gradient_text">
           We don’t follow the future.<br />
           <span class="block mt-1">We build it.</span>
         </h2>

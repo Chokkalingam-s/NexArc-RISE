@@ -7,11 +7,11 @@ $files = glob("{$folder}*.{jpg,jpeg,png,webp}", GLOB_BRACE);
 <div class="c">
   <div class="w-[98vw]">
     <?php if (empty($files)): ?>
-      <div class="aspect-[16/7] rounded-3xl bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+      <div class="aspect-[16/7] bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
         <p class="text-red-600 font-medium">No carousel images found!</p>
       </div>
     <?php else: ?>
-      <div id="carousel" class="relative w-full aspect-[16/7] rounded-3xl shadow-2xl overflow-hidden group">
+      <div id="carousel" class="relative w-full aspect-[16/7] md:rounded-3xl rounded-sm shadow-2xl overflow-hidden group">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 pointer-events-none"></div>
 
         <?php foreach ($files as $i => $img): ?>
@@ -40,7 +40,7 @@ $files = glob("{$folder}*.{jpg,jpeg,png,webp}", GLOB_BRACE);
         <!-- Dots Indicator -->
         <div id="dots" class="flex justify-center gap-3 absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
           <?php foreach ($files as $i => $_): ?>
-            <button onclick="goToSlide(<?= $i ?>)" class= "w-3 h-3 rounded-full transition-all duration-300 <?php echo $i ===
+            <button onclick="goToSlide(<?= $i ?>)" class= "w-3 md:h-3 h-1 rounded-full transition-all duration-300 <?php echo $i ===
 0
   ? "bg-white scale-125"
   : "bg-white/50 hover:bg-white/75"; ?>"></button>
