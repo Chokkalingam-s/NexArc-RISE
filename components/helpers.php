@@ -10,3 +10,4 @@ function inline_svg($path, $extraClass = "")
   }
   return "<!-- Missing icon: {$path} -->";
 }
+?>
