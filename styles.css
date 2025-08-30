@@ -188,3 +188,7 @@ footer {
   width: 100px;
   height: 80px;
 }
+
+.step-item {
+  @apply flex items-center justify-center md:justify-start
+}

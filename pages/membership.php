@@ -8,9 +8,9 @@
         <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-14 h-1 grad_primary rounded-full"></span>
       </h2>
 
-      <div class="space-y-4">
-        <div class="step-item flex items-center gap-3" data-step="1">
-          <div class="step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold grad_primary">
+      <div class="gap-2 grid grid-cols-2 md:grid-cols-none">
+        <div class="step-item gap-3" data-step="1">
+          <div class="step-circle size-10 rounded-full c md:justify-start text-white text-sm font-semibold grad_primary">
             1
           </div>
           <div>
@@ -19,8 +19,8 @@
           </div>
         </div>
 
-        <div class="step-item flex items-center gap-3" data-step="2">
-          <div class="step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-slate-400">
+        <div class="step-item gap-3" data-step="2">
+          <div class="step-circle size-10 rounded-full c text-white text-sm font-semibold bg-slate-400">
             2
           </div>
           <div>
@@ -29,18 +29,18 @@
           </div>
         </div>
 
-        <div class="step-item flex items-center gap-3" data-step="3">
-          <div class="step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-slate-400">
+        <div class="step-item gap-3" data-step="3">
+          <div class="step-circle size-10 rounded-full c text-white text-sm font-semibold bg-slate-400">
             3
           </div>
           <div>
-            <p class="text-sm font-semibold text-slate-600">Contact</p>
+            <p class="text-sm font-semibold text-slate-600">Contact Info</p>
             <p class="text-xs text-slate-400">Step 3 of 4</p>
           </div>
         </div>
 
-        <div class="step-item flex items-center gap-3" data-step="4">
-          <div class="step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-slate-400">
+        <div class="step-item gap-3" data-step="4">
+          <div class="step-circle size-10 rounded-full c text-white text-sm font-semibold bg-slate-400">
             4
           </div>
           <div>
@@ -255,17 +255,17 @@ function updateUI() {
     const label = item.querySelector('p:first-child');
     const subLabel = item.querySelector('p:last-child');
     if (idx+1 < currentStep) {
-      circle.className = 'step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold grad_primary';
+      circle.className = 'step-circle size-10 rounded-full c text-white text-sm font-semibold grad_primary';
       circle.textContent = '✓';
       label.className = 'text-sm font-semibold text-blue-700';
       subLabel.className = 'text-xs text-slate-500';
     } else if (idx+1 === currentStep) {
-      circle.className = 'step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold grad_secondary';
+      circle.className = 'step-circle size-10 rounded-full c text-white text-sm font-semibold grad_secondary';
       circle.textContent = currentStep;
       label.className = 'text-sm font-semibold text-orange-600';
       subLabel.className = 'text-xs text-slate-500';
     } else {
-      circle.className = 'step-circle size-10 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-slate-400';
+      circle.className = 'step-circle size-10 rounded-full c text-white text-sm font-semibold bg-slate-400';
       circle.textContent = idx+1;
       label.className = 'text-sm font-semibold text-slate-600';
       subLabel.className = 'text-xs text-slate-400';

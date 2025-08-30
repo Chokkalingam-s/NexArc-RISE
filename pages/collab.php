@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<section class="min-h-screen overflow-hidden grid md:grid-cols-2">
+<section class="min-h-screen overflow-hidden grid md:grid-cols-2 grid-cols-1">
   <div class="space-y-8 h-full px-4 py-6">
 
   <!-- Scholarships -->
