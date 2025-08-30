@@ -1,9 +1,9 @@
 <?php include_once __DIR__ . "/helpers.php"; ?>
 
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto p-4 rounded-xl">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-2 max-w-7xl mx-auto py-4 rounded-xl">
   <!-- Site Info Column -->
-  <div class="space-y-4">
-    <div class="space-y-4">
+  <div class="space-y-2">
+    <div class="md:space-y-4">
       <h1 class="text-2xl font-bold gradient-text">
         NexArc RISE
       </h1>
@@ -25,15 +25,13 @@
       Contact Us
       <div class="absolute bottom-0 left-0 w-12 h-0.5 grad_secondary mt-2"></div>
     </h2>
-    <div class="space-y-2">
       <div class="flex items-center gap-2">
-        <?= inline_svg("assets/icons/phone-solid.svg") ?>
+        <?= inline_svg("assets/icons/phone-solid-full.svg") ?>
         <span class="gradient-text">+81-80-4842-8090</span>
       </div>
       <div class="flex items-center gap-2">
         <?= inline_svg("assets/icons/envelope-solid.svg") ?>
-        <a href="mailto:nexarcrise@gmail.com" class="hover:underline gradient-text">nexarcrise@gmail.com</a>
-      </div>
+        <span><a href="mailto:nexarcrise@gmail.com" class="hover:underline gradient-text text-sm">nexarcrise@gmail.com</a></span>
     </div>
   </div>
 
