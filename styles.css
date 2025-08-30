@@ -290,7 +290,3 @@ footer {
   width: 100px;
   height: 80px;
 }
-
-.g {
-  grid-template-columns: 90% 10%;
-}

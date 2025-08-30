@@ -54,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert into database
-    $sql = "INSERT INTO form 
-        (name, country, dob, age, sex, address, phone_no, email, degree, identity_image, howdoyougettoknow, note, formType) 
-        VALUES 
+    $sql = "INSERT INTO form
+        (name, country, dob, age, sex, address, phone_no, email, degree, identity_image, howdoyougettoknow, note, formType)
+        VALUES
         (:name, :country, :dob, :age, :sex, :address, :phone_no, :email, :degree, :identity_image, :howdoyougettoknow, :note, :formType)";
 
     $stmt = $conn->prepare($sql);
@@ -83,90 +83,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <section class="min-h-screen overflow-hidden">
-  <div class="overflow-y-auto space-y-8 h-full px-4 py-6">
+  <div class="space-y-8 h-full px-4 py-6">
 
-<!-- Scholarships -->
-<div>
-  <h2 class="gradient_text mb-6">Scholarships</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <?php foreach ($scholarships as $item): ?>
-      <?php
-        $image = $item['image'] ?? 'assets/default.jpg';
-        $imageURL = '../nexarc-rise/uploads/' . ltrim($image);
-      ?>
-      <div class="bg-white/20 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-        <div class="flex h-52">
-          <img src="<?= htmlspecialchars($imageURL) ?>" alt="Scholarship" class="w-1/3 object-cover">
-          <div class="p-4 flex flex-col justify-between w-2/3">
-            <div>
-              <h3 class="font-bold text-slate-800 text-lg mb-1"><?= htmlspecialchars($item['title']) ?></h3>
-              <p class="text-indigo-600 text-sm font-medium mb-2"><?= htmlspecialchars($item['university']) ?></p>
-              <p class="text-slate-600 text-sm line-clamp-4"><?= htmlspecialchars($item['description']) ?></p>
+  <!-- Scholarships -->
+  <div>
+    <h2 class="gradient_text mb-6">Scholarships</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <?php foreach ($scholarships as $item): ?>
+        <?php
+          $image = $item['image'] ?? 'assets/default.jpg';
+          $imageURL = '../nexarc-rise/uploads/' . ltrim($image);
+        ?>
+        <div class="bg-white/20 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+          <div class="flex h-52">
+            <img src="<?= htmlspecialchars($imageURL) ?>" alt="Scholarship" class="w-1/3 object-cover">
+            <div class="p-4 flex flex-col justify-between w-2/3">
+              <div>
+                <h3 class="font-bold text-slate-800 text-lg mb-1"><?= htmlspecialchars($item['title']) ?></h3>
+                <p class="text-indigo-600 text-sm font-medium mb-2"><?= htmlspecialchars($item['university']) ?></p>
+                <p class="text-slate-600 text-sm line-clamp-4"><?= htmlspecialchars($item['description']) ?></p>
+              </div>
+              <?php if (!empty($item['link'])): ?>
+                <a href="<?= htmlspecialchars($item['link']) ?>" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm transition-colors">
+                  Learn More →
+                </a>
+              <?php endif; ?>
             </div>
-            <?php if (!empty($item['link'])): ?>
-              <a href="<?= htmlspecialchars($item['link']) ?>" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm transition-colors">
-                Learn More →
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <!-- Schools -->
+  <div>
+    <h2 class="gradient_text mb-6">Schools</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <?php foreach ($schools as $school): ?>
+        <?php
+          $image = $school['image'] ?? 'assets/default.jpg';
+          $imageURL = '../nexarc-rise/uploads/' . ltrim($image);
+        ?>
+        <div class="bg-white/20 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+          <img src="<?= htmlspecialchars($imageURL) ?>" alt="School" class="w-full aspect-[16/9] object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-slate-800 text-lg mb-1"><?= htmlspecialchars($school['schoolname']) ?></h3>
+            <p class="text-slate-600 text-sm mb-3"><?= htmlspecialchars($school['place']) ?></p>
+            <?php if (!empty($school['link'])): ?>
+              <a href="<?= htmlspecialchars($school['link']) ?>" target="_blank" class="gradient_text font-medium text-sm transition-colors">
+                Visit Site →
               </a>
             <?php endif; ?>
           </div>
         </div>
-      </div>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+
+<style>
+.bar::-webkit-scrollbar {
+  display: none;
+}</style>
+
+<div class="w-full">
+  <h2 class="gradient_text mb-4">
+    Student Success Stories
+  </h2>
+  <!-- Fixed-width parent (doesn't scroll) -->
+  <div class="w-full">
+    <!-- This flex row scrolls -->
+    <div class="flex gap-6 overflow-y-auto pb-4 bar">
+      <?php foreach ($students as $student): ?>
+        <div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md flex-shrink-0 w-96">
+          <div class="size-16 px-4 rounded-full <?= $student["bg"] ?>"></div>
+          <div>
+            <p class="font-semibold text-slate-800 text-lg"><?= $student["name"] ?></p>
+            <p class="text-slate-600"><?= $student["desc"] ?></p>
+          </div>
+        </div>
+<div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md flex-shrink-0 w-96">
+          <div class="size-16 px-4 rounded-full <?= $student["bg"] ?>"></div>
+          <div>
+            <p class="font-semibold text-slate-800 text-lg"><?= $student["name"] ?></p>
+            <p class="text-slate-600"><?= $student["desc"] ?></p>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
   </div>
 </div>
 
-<!-- Schools -->
-<div>
-  <h2 class="gradient_text mb-6">Schools</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <?php foreach ($schools as $school): ?>
-      <?php
-        $image = $school['image'] ?? 'assets/default.jpg';
-        $imageURL = '../nexarc-rise/uploads/' . ltrim($image);
-      ?>
-      <div class="bg-white/20 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-        <img src="<?= htmlspecialchars($imageURL) ?>" alt="School" class="w-full aspect-[16/9] object-cover">
-        <div class="p-4">
-          <h3 class="font-bold text-slate-800 text-lg mb-1"><?= htmlspecialchars($school['schoolname']) ?></h3>
-          <p class="text-slate-600 text-sm mb-3"><?= htmlspecialchars($school['place']) ?></p>
-          <?php if (!empty($school['link'])): ?>
-            <a href="<?= htmlspecialchars($school['link']) ?>" target="_blank" class="gradient_text font-medium text-sm transition-colors">
-              Visit Site →
-            </a>
-          <?php endif; ?>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  </div>
+
 </div>
-
-      <div>
-        <h2 class="gradient_text mb-4">
-          Student Success Stories
-        </h2>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <?php
-          global $students;
-
-          foreach ($students as $student): ?>
-            <div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md">
-              <div class="size-16 px-4 rounded-full <?= $student[
-                "bg"
-              ] ?>">
-              </div>
-              <div>
-                <p class="font-semibold text-slate-800 text-lg">
-                  <?= $student["name"] ?>
-                </p>
-                <p class="text-slate-600">
-                  <?= $student["desc"] ?>
-                </p>
-              </div>
-            </div>
-            <?php endforeach;
-          ?>
-        </div>
-      </div>
       <!-- Contact Form -->
       <div>
         <h2 class="gradient_text mb-6 text-center text-2xl font-bold">
