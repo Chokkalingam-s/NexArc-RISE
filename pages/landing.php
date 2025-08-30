@@ -31,10 +31,8 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <h2 class="ongoing head">Ongoing Projects</h2>
       <p class="text-slate-600 mt-1">Innovation in progress</p>
     </div>
-    <a href="/NexArc-rise/projects" class="group inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500 text-amber-50 font-medium rounded-full transition-all duration-300 hover:scale-105 hover:bg-amber-200 shadow">
+    <a href="/NexArc-rise/projects" class="group flex w-40 items-center gap-x-2 bg-amber-500 text-amber-50 font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
       View More
-      <?php include __DIR__ .
-        "/../assets/icons/arrow-right-solid-full.svg"; ?>
     </a>
   </div>
 
@@ -90,10 +88,8 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <h2 class="text-2xl head font-medium gradient_text">Completed Projects</h2>
       <p class="text-slate-600 mt-1">Success stories delivered</p>
     </div>
-    <a href="/NexArc-rise/projects" class="group inline-flex items-center gap-2 px-6 py-3 grad_primary rf transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+    <a href="/NexArc-rise/projects" class="flex items-center gap-x-2 bg-blue-600 text-amber-50 font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
       View More
-      <?php include __DIR__ .
-        "/../assets/icons/arrow-right-solid-full.svg"; ?>
     </a>
   </div>
 
