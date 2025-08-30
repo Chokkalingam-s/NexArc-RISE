@@ -87,7 +87,7 @@ function renderCard($card, $index, $type = "ongoing")
           ? "<p class='text-slate-700'><span class='font-semibold text-slate-800'>Paper Link:</span> <a href='{$link}' target='_blank' class='text-blue-600 underline'>{$link}</a></p>"
           : "") .
 
-          
+
     "
     </div>
   </div>";
@@ -115,11 +115,11 @@ function renderMentor($m)
 
 ?>
 
-<main class="pt-10 md:pt-0 grid grid-cols-[68%_2%_30%] h-screen overflow-hidden">
+<main class="pt-10 md:pt-0 grid md:grid-cols-[68%_2%_30%] h-screen overflow-hidden">
   <div class="relative">
     <!-- Toggle Projects -->
 
-    <div class="absolute w-fit right-2 top-14 z-20">
+    <div class="absolute w-fit right-2 md:top-14 z-20">
       <div class="backdrop-blur-md rounded-full p-1 shadow-lg">
         <div class="flex bg-white/60 rounded-full p-1">
           <button class="<?= $btnAmber ?>" id="ongoingBtn">Ongoing</button>
