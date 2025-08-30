@@ -31,7 +31,7 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <h2 class="ongoing head">Ongoing Projects</h2>
       <p class="text-slate-600 mt-1">Innovation in progress</p>
     </div>
-    <a href="/NexArc-rise/projects" class="group flex w-40 items-center gap-x-2 bg-amber-500 text-amber-50 font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
+    <a href="/NexArc-rise/projects" class="flex items-center gap-x-2 bg-amber-500 text-white font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
       View More
     </a>
   </div>

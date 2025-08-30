@@ -50,27 +50,21 @@
         </div>
 
         <!-- Floating Tags -->
-        <div class="absolute -top-4 -right-4 about_us_tags_base gradient_text" style="animation-delay: 0s">
-          <span>
-            <?= inline_svg(
-              "assets/icons/globe-solid-full.svg",
-            ) ?>
-          </span> Global Collaboration
-        </div>
-        <div class="absolute -bottom-4 -left-4 about_us_tags_base gradient_text" style="animation-delay: 1s">
-          <span>
-            <?= inline_svg(
-              "assets/icons/lightbulb-solid-full.svg",
-            ) ?>
-          </span> Innovation Focus
-        </div>
-        <div class="absolute bottom-5 -right-24 about_us_tags_base gradient_text" style="animation-delay: 2s">
-          <span>
-            <?= inline_svg(
-              "assets/icons/bullseye-solid-full.svg",
-            ) ?>
-          </span> Expert Mentorship
-        </div>
+        <div class="absolute -top-4 -right-4 about_us_tags_base gradient_text [animation:float_3s_ease-in-out_infinite]" style="animation-delay:0s">
+  <span><?= inline_svg("assets/icons/globe-solid-full.svg") ?></span> Global Collaboration
+</div>
+<div class="absolute -bottom-4 -left-8 about_us_tags_base gradient_text [animation:float_3s_ease-in-out_infinite]" style="animation-delay:1s">
+  <span><?= inline_svg("assets/icons/lightbulb-solid-full.svg") ?></span> Innovation Focus
+</div>
+<div class="absolute bottom-5 -right-32 about_us_tags_base gradient_text [animation:float_3s_ease-in-out_infinite]" style="animation-delay:2s">
+  <span><?= inline_svg("assets/icons/bullseye-solid-full.svg") ?></span> Expert Mentorship
+</div>
+  <style>
+    @keyframes float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -10px; }
+    }
+  </style>
       </div>
     </div>
   </div>
