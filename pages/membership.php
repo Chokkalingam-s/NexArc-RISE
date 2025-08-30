@@ -1,16 +1,4 @@
-<?php
-function inline_svg($path, $extraClass = "")
-{
-  if (file_exists($path)) {
-    return str_replace(
-      "<svg",
-      "<svg class=\"size-5 fill-current inline-block mr-2 {$extraClass}\"",
-      file_get_contents($path),
-    );
-  }
-  return "<!-- Missing icon: {$path} -->";
-}
-?>
+<?php include_once __DIR__ . "/../components/helpers.php" ?>
 <section class="max-w-6xl mx-auto py-10 px-4">
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
     <!-- Left Panel - Stepper -->
