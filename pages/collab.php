@@ -162,13 +162,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="text-slate-600"><?= $student["desc"] ?></p>
           </div>
         </div>
-<div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md flex-shrink-0 w-96">
-          <div class="size-16 px-4 rounded-full <?= $student["bg"] ?>"></div>
-          <div>
-            <p class="font-semibold text-slate-800 text-lg"><?= $student["name"] ?></p>
-            <p class="text-slate-600"><?= $student["desc"] ?></p>
-          </div>
-        </div>
       <?php endforeach; ?>
     </div>
   </div>
