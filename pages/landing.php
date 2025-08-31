@@ -31,7 +31,7 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <h2 class="ongoing head">Ongoing Projects</h2>
       <p class="text-slate-600 mt-1">Innovation in progress</p>
     </div>
-    <a href="/NexArc-rise/projects" class="flex items-center gap-x-2 bg-amber-500 text-white font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
+    <a href="/NexArc-RISE/projects" class="flex items-center gap-x-2 bg-amber-500 text-white font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
       View More
     </a>
   </div>
@@ -39,7 +39,7 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <?php if ($ongoingProjects): ?>
       <?php foreach ($ongoingProjects as $project): ?>
-        <a href="/NexArc-rise/projects" class="block group">
+        <a href="/NexArc-RISE/projects" class="block group">
           <div class="bg-white/50 rounded-2xl shadow-md hover:shadow-lg transition-all duration-500 group-hover:-translate-y-2">
             <div class="aspect-[4/2] rounded-t-2xl overflow-hidden">
               <img src="<?= htmlspecialchars(
@@ -88,7 +88,7 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <h2 class="text-2xl head font-medium gradient_text">Completed Projects</h2>
       <p class="text-slate-600 mt-1">Success stories delivered</p>
     </div>
-    <a href="/NexArc-rise/projects" class="flex items-center gap-x-2 bg-blue-600 text-amber-50 font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
+    <a href="/NexArc-RISE/projects" class="flex items-center gap-x-2 bg-blue-600 text-amber-50 font-medium rounded-full transition-all duration-300 hover:scale-105 px-4 py-2">
       View More
     </a>
   </div>
