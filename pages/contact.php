@@ -15,7 +15,7 @@
 </style>
 <section class="max-w-6xl mx-auto px-4 py-16 relative overflow-hidden">
   <!-- Header -->
-  <div class="text-center mb-16 relative z-10">
+  <div class="text-center mb-8 relative z-10">
     <div class="inline-flex items-center gap-4 mb-6">
       <div class="w-16 h-16 grad_primary rounded-2xl flex items-center justify-center glow-effect">
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,8 +25,8 @@
         </svg>
       </div>
     </div>
-    <h2 class="text-5xl font-bold gradient_text bg-clip-text text-transparent mb-4">
-      Contact Us
+    <h2 class="text-5xl font-bold gradient_text bg-clip-text text-transparent mb-2">
+      Our Team
     </h2>
     <p class="text-slate-700 text-lg max-w-2xl mx-auto">
       Meet our exceptional team of innovators and leaders
