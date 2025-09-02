@@ -82,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<section class="min-h-screen overflow-hidden grid md:grid-cols-2 grid-cols-1">
-  <div class="space-y-8 h-full px-4 py-6">
+<section class="min-h-screen overflow-hidden">
+  <div class="space-y-6 h-full px-2 py-6">
 
   <!-- Scholarships -->
   <div>
@@ -152,9 +152,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Fixed-width parent (doesn't scroll) -->
     <div class="w-full">
       <!-- This flex row scrolls -->
-      <div class="flex gap-6 overflow-y-auto pb-4 bar">
+      <div class="flex gap-x-2 overflow-y-auto pb-4 bar">
         <?php foreach ($students as $student): ?>
-          <div class="flex items-center gap-4 p-6 bg-white/40 rounded-xl shadow-md flex-shrink-0 w-96">
+          <div class="flex items-center gap-2 py-2 px-1 bg-white/40 rounded-xl shadow-md flex-shrink-0 w-60">
             <div class="size-16 px-4 rounded-full <?= $student["bg"] ?>"></div>
             <div>
               <p class="font-semibold text-slate-800 text-lg"><?= $student["name"] ?></p>
