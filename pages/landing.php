@@ -96,7 +96,7 @@ $completedProjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
     <?php if ($completedProjects): ?>
       <?php foreach ($completedProjects as $project): ?>
-      <a href="/NexArc-rise/projects" class="block group">
+      <a href="/NexArc-RISE/projects" class="block group">
         <div class="relative overflow-hidden rounded-2xl bg-white/40 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
           <div class="aspect-[4/1.8] relative overflow-hidden">
             <img src="<?= htmlspecialchars(

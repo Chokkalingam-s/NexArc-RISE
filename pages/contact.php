@@ -13,6 +13,89 @@
   0.885, 0.32, 1.275); } .hover-lift:hover { transform: translateY(-20px)
   scale(1.05); }
 </style>
+<?php
+require_once __DIR__ . '/../config/db.php'; // $conn is PDO
+
+include_once __DIR__ . "/../assets/collab_data.php";
+
+// Fetch Scholarships
+$stmt = $conn->query("SELECT * FROM Scholorship ORDER BY scholorshipId DESC");
+$scholarships = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch Schools
+$stmt = $conn->query("SELECT * FROM School ORDER BY schoolId DESC");
+$schools = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sanitize input
+    $name = trim($_POST['name'] ?? '');
+    $dob = $_POST['dob'] ?? '';
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $degree = trim($_POST['degree'] ?? '');
+    $country = trim($_POST['country'] ?? '');
+    $gender = $_POST['gender'] ?? '';
+    $address = trim($_POST['address'] ?? '');
+    $referral = $_POST['referral'] ?? '';
+    $notes = trim($_POST['notes'] ?? '');
+    $interests = $_POST['interest'] ?? [];
+
+    // Calculate age from DOB
+    $age = null;
+    if (!empty($dob)) {
+        $birthDate = new DateTime($dob);
+        $today = new DateTime();
+        $age = $today->diff($birthDate)->y;
+    }
+
+    // Combine interests as comma-separated string
+    $formType = implode(',', $interests);
+
+    // Handle ID document upload
+    $identity_image = null;
+    if (isset($_FILES['id_doc']) && $_FILES['id_doc']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/../uploads/ids/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        $fileTmp = $_FILES['id_doc']['tmp_name'];
+        $fileName = time() . '_' . basename($_FILES['id_doc']['name']);
+        $filePath = $uploadDir . $fileName;
+
+        if (move_uploaded_file($fileTmp, $filePath)) {
+            $identity_image = 'uploads/ids/' . $fileName;
+        }
+    }
+
+    // Insert into database
+    $sql = "INSERT INTO form
+        (name, country, dob, age, sex, address, phone_no, email, degree, identity_image, howdoyougettoknow, note, formType)
+        VALUES
+        (:name, :country, :dob, :age, :sex, :address, :phone_no, :email, :degree, :identity_image, :howdoyougettoknow, :note, :formType)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([
+        ':name' => $name,
+        ':country' => $country,
+        ':dob' => $dob,
+        ':age' => $age,
+        ':sex' => $gender,
+        ':address' => $address,
+        ':phone_no' => $phone,
+        ':email' => $email,
+        ':degree' => $degree,
+        ':identity_image' => $identity_image,
+        ':howdoyougettoknow' => $referral,
+        ':note' => $notes,
+        ':formType' => $formType
+    ]);
+
+    // Redirect or success message
+    echo "<script>alert('Form submitted successfully!'); window.location.href=window.location.href;</script>";
+    exit;
+}
+?>
 <section class="max-w-6xl mx-auto px-4 py-16 relative overflow-hidden">
   <!-- Header -->
   <div class="text-center mb-8 relative z-10">
