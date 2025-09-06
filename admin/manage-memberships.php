@@ -205,7 +205,8 @@ $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </form>
   </div>
 </div>
-
+<!-- Bootstrap JS (Bundle includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const membersList = document.getElementById('membersList');
 const detailsCard = document.getElementById('detailsCard');
@@ -240,13 +241,14 @@ function formatMemberFull(m){
 
 // helper: fetch JSON
 async function postAction(data){
-  const res = await fetch('membership_action.php', {
+  const res = await fetch('./membership_action.php', {   // ✅ add ./ so it points inside admin folder
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   });
   return res.json();
 }
+
 
 // Click handlers (delegation)
 membersList.addEventListener('click', async (e) => {
@@ -259,7 +261,8 @@ membersList.addEventListener('click', async (e) => {
   // View full details
   if(viewBtn){
     // request full member details from server
-    const resp = await fetch(`membership_action.php?action=get&id=${id}`);
+    const resp = await fetch(`./membership_action.php?action=get&id=${id}`);
+
     const m = await resp.json();
     document.getElementById('memberModalTitle').textContent = m.name;
     document.getElementById('memberModalBody').innerHTML = formatMemberFull(m);
@@ -369,7 +372,11 @@ function applyUpdate(result){
     existing.dataset.status = m.membershipStatus;
     existing.querySelector('.status-badge').textContent = m.membershipStatus;
     // update small fields
-    existing.querySelector('.small.text-muted')?.textContent = m.degree + ' • ' + m.country;
+    let smallField = existing.querySelector('.small.text-muted');
+if (smallField) {
+  smallField.textContent = m.degree + ' • ' + m.country;
+}
+
     // update action buttons area (simpler: replace innerHTML of action area)
     // rebuild the action buttons area:
     const actionsDiv = existing.querySelector('div.d-flex.mt-2');
@@ -429,5 +436,7 @@ function applyUpdate(result){
   document.getElementById('count-cancelled').textContent = result.counts.Cancelled;
 }
 </script>
+
+
 </body>
 </html>
